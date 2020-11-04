@@ -6,19 +6,19 @@ import LoginPage from './pages/LoginPage'
 import { CustomerContext } from './contexts/CustomerContext'
 
 function App() {
-  const [customerDataList, setCustomerDataList] = useState(null)
+  const [customerDataList, setCustomerDataList] = useState({})
   return (
     <div>
       <Switch>
+        <Route exact path="/">
+          <LoginPage/>
+        </Route>
         <CustomerContext.Provider value={{customerDataList, setCustomerDataList}}>
           <Route exact path="/customer/:id" component={CustomerDetailPage}></Route>
           <Route exact path="/home">
             <HomePage/>
           </Route>
         </CustomerContext.Provider>
-        <Route exact path="/">
-          <LoginPage/>
-        </Route>
       </Switch>
     </div>
   );
