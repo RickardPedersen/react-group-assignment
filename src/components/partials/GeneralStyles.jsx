@@ -13,6 +13,14 @@ function fromTheme(themeProp, args, prefix) {
     } 
 }
 
+function ifProp(prop, css) {
+	if(typeof prop !== 'undefined') {
+		console.log(css)
+		return css
+	}
+}
+
+
 const BackgroundColor = css`
 	${({ theme, background }) => {
 		return fromTheme(theme.colors, background, 'background: ')
@@ -53,34 +61,35 @@ const Sizing = css`
 		return fromTheme(theme.padding, margin, 'margin: ')
 	}};
 
-    ${({ width, minWidth, maxWidth, height, minHeight, maxHeight }) => {
-        if(typeof width !== 'undefined') {
-            return `width: ${width};`
-        }
-        if(typeof height !== 'undefined') {
-            return `height: ${height};`
-        }
-
-        if(typeof minWidth !== 'undefined') {
-            return `min-width: ${minWidth};`
-        }
-
-        if(typeof maxWidth !== 'undefined') {
-            return `max-width: ${maxWidth};`
-        }
-
-        if(typeof minHeight !== 'undefined') {
-            return `min-height: ${minHeight};`
-        }
-        
-        if(typeof maxHeight !== 'undefined') {
-            return `max-height: ${maxHeight};`
-        }
-    }}
 
 	${({ theme, borderRadius }) => {
 		return fromTheme(theme, borderRadius, 'border-radius: ')
 	}};
+
+    ${({ width, minWidth, maxWidth, height, minHeight, maxHeight, position, fullscreen }) => {
+		return [
+			ifProp(width, `width: ${width};`),
+		
+			ifProp(height, `height: ${height};`),
+
+			ifProp(minWidth, `min-width: ${minWidth};`),
+
+			ifProp(maxWidth, `max-width: ${maxWidth};`),
+
+			ifProp(minHeight, `min-height: ${minHeight};`),
+			
+			ifProp(maxHeight, `max-height: ${maxHeight};`),
+			
+			ifProp(position, `position: ${position};`),
+
+			ifProp(fullscreen, `
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+				`),
+		].join('\n')
+    }}
 `;
 
 const HeadingStyle = css`
@@ -117,6 +126,7 @@ export const H4 = styled.h4`
 export const H5 = styled.h5`
 	${HeadingStyle};
 `;
+
 export const H6 = styled.h6`
 	${HeadingStyle};
 `;
