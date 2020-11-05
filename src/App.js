@@ -42,7 +42,9 @@ function App() {
             </CustomerContext.Provider>
             : 
             <Route path="/*">
-              {history.push('/login')}
+              {(searchParams.has('uid') && searchParams.has('token')) ?
+                history.push(`/login${history.location.search}`) :
+                history.push('/login')}
             </Route>
           }          
         </UserContext.Provider>
