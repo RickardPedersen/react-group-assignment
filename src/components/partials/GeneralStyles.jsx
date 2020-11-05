@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 function fromTheme(themeProp, args, prefix) {
 	if (args) {
@@ -73,6 +73,10 @@ const Sizing = css`
 			return `max-height: ${maxHeight};`;
 		}
 	}}
+
+	${({ theme, borderRadius }) => {
+		return fromTheme(theme, borderRadius, 'border-radius: ');
+	}};
 `;
 
 const HeadingStyle = css`
@@ -125,6 +129,16 @@ export const Div = styled.div`
 	${BackgroundColor};
 	${Sizing};
 	${Flex};
+`;
+
+export const Th = styled.th`
+	${HeadingStyle};
+	${TextColor};
+`;
+
+export const Td = styled.td`
+	${TextStyle};
+	${TextColor};
 `;
 
 export const Button = styled.button`
