@@ -1,5 +1,7 @@
 const BASE_URL = "https://frebi.willandskill.eu"
 const LOGIN_URL = `${BASE_URL}/api-token-auth/`
+const USER_INFO_URL = `${BASE_URL}/api/v1/me`;
+const VERIFY_URL = `${BASE_URL}/api-token-verify/`
 
 export default class UserKit {
     static login(formData) {
@@ -12,6 +14,12 @@ export default class UserKit {
                 password
             })
         })
+    }
+
+    static getMe() {
+        return fetch(USER_INFO_URL, {
+            headers: this.getPrivateHeaders()
+        });
     }
 
     static getPublicHeaders() {
@@ -33,5 +41,15 @@ export default class UserKit {
 
     static setToken(token) {
         return localStorage.setItem('token', token)
+    }
+
+    static verifyToken() {
+        return fetch(VERIFY_URL, {
+            headers: this.getPublicHeaders(),
+            method: 'POST',
+            body: JSON.stringify({
+                token: this.getToken()
+            })
+        })
     }
 }
