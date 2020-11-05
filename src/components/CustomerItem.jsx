@@ -5,9 +5,7 @@ import { Th, Td, Tr } from './partials/TableStyles';
 export default function CustomerItem(props) {
 	const { id, email, name, organisationNr, phoneNumber, reference } = props.data;
 	const history = useHistory();
-	console.log(props.data);
 	function handleOnClick(id) {
-		console.log('Row clicked');
 		history.push(`/customer/${id}`);
 	}
 	return (
