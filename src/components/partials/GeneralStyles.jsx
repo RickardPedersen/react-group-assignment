@@ -191,7 +191,7 @@ export const Button = styled.button`
 export const Input = styled.input`
 	width: 100%;
 	padding: ${({ theme }) => theme.padding.s};
-	background: ${({ theme }) => theme.colors.gray1};
+	background: ${({ theme }) => theme.colors.gray2};
 	border: none;
 	border-radius: ${({ theme }) => theme.borderRadius};
 
