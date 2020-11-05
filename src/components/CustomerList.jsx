@@ -12,16 +12,21 @@ export default function CustomerList() {
 	const { customerDataList, setCustomerDataList } = useContext(CustomerContext);
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [currentUser, setCurrentUser] = useState(null);
-
-	useEffect(() => {
+	
+	function fetchCustomers(){
 		CustomerKit.getCustomerList()
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data.results);
-				console.log(typeof customerDataList);
-				setCustomerDataList(data.results);
-				setDataLoaded(true);
-			});
+		.then((res) => res.json())
+		.then((data) => {
+			console.log(data.results);
+			console.log(typeof customerDataList);
+			setCustomerDataList(data.results);
+			setDataLoaded(true);
+		});
+
+	}
+	useEffect(() => {
+		fetchCustomers()
+
 		UserKit.getMe()
 			.then((res) => res.json())
 			.then((data) => {
@@ -29,6 +34,7 @@ export default function CustomerList() {
 				setCurrentUser(data);
 			});
 	}, []);
+
 	return (
 		<>
 			{currentUser && <UserInfo data={currentUser} />}
@@ -41,7 +47,7 @@ export default function CustomerList() {
 					</TableComponent>
 				)}
 			</TableContainer>
-			<CreateCustomer />
+			<CreateCustomer fetchCustomers={fetchCustomers} />
 		</>
 	);
 }

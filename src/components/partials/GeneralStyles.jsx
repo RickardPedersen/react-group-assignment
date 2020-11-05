@@ -11,7 +11,7 @@ function fromTheme(themeProp, args, prefix) {
 
 function ifProp(prop, css) {
 	if(typeof prop !== 'undefined') {
-		console.log(css)
+		//console.log(css)
 		return css
 	}
 }
