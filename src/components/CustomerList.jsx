@@ -6,6 +6,7 @@ import CustomerKit from '../data/CustomerKit';
 import CustomerItem from './CustomerItem';
 import TableComponent from './partials/TableComponent';
 import { TableContainer } from './partials/TableStyles';
+import CreateCustomer from './CreateCustomer';
 
 export default function CustomerList() {
 	const { customerDataList, setCustomerDataList } = useContext(CustomerContext);
@@ -40,6 +41,7 @@ export default function CustomerList() {
 					</TableComponent>
 				)}
 			</TableContainer>
+			<CreateCustomer />
 		</>
 	);
 }
