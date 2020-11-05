@@ -1,49 +1,53 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import FormComponent from './partials/FormComponent'
-import InputComponent from './partials/InputComponent'
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import FormComponent from './partials/FormComponent';
+import InputComponent from './partials/InputComponent';
 import UserKit from '../data/UserKit';
+import { UserContext } from '../contexts/UserContext';
 
 export default function LoginForm() {
-    const [formData, setFormData] = useState({
-        email: "webb19@willandskill.se",
-        password: "javascriptoramverk",
-    })
+	const { setCurrentToken } = useContext(UserContext);
 
-    const history = useHistory()
+	const [formData, setFormData] = useState({
+		email: 'webb19@willandskill.se',
+		password: 'javascriptoramverk',
+	});
 
-    function handleOnChange(e) {
-        setFormData({...formData, [e.target.name]: e.target.value})
-    }
+	const history = useHistory();
 
-    function handleOnSubmit() {
-        UserKit.login(formData)
-        .then(res => res.json())
-        .then(data => {
-            if(data.token) {
-                UserKit.setToken(data.token)
-                history.push('/home')
-            }
-        })
-    }
+	function handleOnChange(e) {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	}
 
-    return (
-        <FormComponent handleOnSubmit={ handleOnSubmit }>
-            <InputComponent
-                name="email"
-                label="E-mail"
-                placeholder="killenmedallt@hotmail.com"
-                value={formData.email}
-                handleOnChange={handleOnChange}
-            />
-            <InputComponent
-                name="password"
-                label="Password"
-                type="password"
-                placeholder="lololololol"
-                value={formData.password}
-                handleOnChange={handleOnChange}
-            />
-        </FormComponent>
-    )
+	function handleOnSubmit() {
+		UserKit.login(formData)
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.token) {
+					UserKit.setToken(data.token);
+					setCurrentToken(data.token);
+					history.push('/home');
+				}
+			});
+	}
+
+	return (
+		<FormComponent handleOnSubmit={handleOnSubmit}>
+			<InputComponent
+				name='email'
+				label='E-mail'
+				placeholder='killenmedallt@hotmail.com'
+				value={formData.email}
+				handleOnChange={handleOnChange}
+			/>
+			<InputComponent
+				name='password'
+				label='Password'
+				type='password'
+				placeholder='lololololol'
+				value={formData.password}
+				handleOnChange={handleOnChange}
+			/>
+		</FormComponent>
+	);
 }
