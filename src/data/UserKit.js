@@ -1,55 +1,90 @@
-const BASE_URL = "https://frebi.willandskill.eu"
+const BASE_URL = 'https://frebi.willandskill.eu'
 const LOGIN_URL = `${BASE_URL}/api-token-auth/`
-const USER_INFO_URL = `${BASE_URL}/api/v1/me`;
+const CREATE_ACCOUNT_URL = `${BASE_URL}/auth/users/create/`
+const USER_INFO_URL = `${BASE_URL}/api/v1/me`
 const VERIFY_URL = `${BASE_URL}/api-token-verify/`
 
 export default class UserKit {
-    static login(formData) {
-        const { email, password } = formData
-        return fetch(LOGIN_URL, {
-            headers: this.getPublicHeaders(),
-            method: 'POST',
-            body: JSON.stringify({
+	static createAccount(formData) {
+		const {
+			email,
+			password,
+			firstName,
+			lastName,
+			organisationName,
+			organisationKind,
+        } = formData
+        
+		const test = {
+			email,
+			password,
+			firstName,
+			lastName,
+			organisationName,
+			organisationKind,
+        }
+        
+		console.log(test)
+		return fetch(CREATE_ACCOUNT_URL, {
+		    headers: this.getPublicHeaders(),
+		    method: 'POST',
+		    body: JSON.stringify({
                 email,
-                password
+                password,
+                firstName,
+                lastName,
+                organisationName,
+                organisationKind,
             })
-        })
-    }
+		})
+	}
 
-    static getMe() {
-        return fetch(USER_INFO_URL, {
-            headers: this.getPrivateHeaders()
-        });
-    }
+	static login(formData) {
+		const { email, password } = formData
+		return fetch(LOGIN_URL, {
+			headers: this.getPublicHeaders(),
+			method: 'POST',
+			body: JSON.stringify({
+				email,
+				password,
+			}),
+		})
+	}
 
-    static getPublicHeaders() {
-        return {
-            'Content-Type': 'application/json' 
-        }
-    }
+	static getMe() {
+		return fetch(USER_INFO_URL, {
+			headers: this.getPrivateHeaders(),
+		})
+	}
 
-    static getPrivateHeaders() {
-        return {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.getToken()}`
-        }
-    }
+	static getPublicHeaders() {
+		return {
+			'Content-Type': 'application/json',
+		}
+	}
 
-    static getToken() {
-        return localStorage.getItem('token')
-    }
+	static getPrivateHeaders() {
+		return {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${this.getToken()}`,
+		}
+	}
 
-    static setToken(token) {
-        return localStorage.setItem('token', token)
-    }
+	static getToken() {
+		return localStorage.getItem('token')
+	}
 
-    static verifyToken() {
-        return fetch(VERIFY_URL, {
-            headers: this.getPublicHeaders(),
-            method: 'POST',
-            body: JSON.stringify({
-                token: this.getToken()
-            })
-        })
-    }
+	static setToken(token) {
+		return localStorage.setItem('token', token)
+	}
+
+	static verifyToken() {
+		return fetch(VERIFY_URL, {
+			headers: this.getPublicHeaders(),
+			method: 'POST',
+			body: JSON.stringify({
+				token: this.getToken(),
+			}),
+		})
+	}
 }
