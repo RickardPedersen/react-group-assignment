@@ -1,10 +1,10 @@
 import React from 'react';
-import HomeComponent from '../components/HomeComponent';
+import CustomerList from '../components/CustomerList';
 
 export default function HomePage() {
 	return (
 		<div>
-			<HomeComponent />
+			<CustomerList />
 		</div>
 	);
 }
