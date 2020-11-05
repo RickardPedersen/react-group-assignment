@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import HomeComponent from '../components/HomeComponent';
 
 export default function HomePage() {
-    return (
-        <div>
-            <h1>the hello</h1>
-        </div>
-    )
+	return (
+		<div>
+			<HomeComponent />
+		</div>
+	);
 }

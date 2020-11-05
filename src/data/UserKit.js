@@ -1,5 +1,6 @@
 const BASE_URL = "https://frebi.willandskill.eu"
 const LOGIN_URL = `${BASE_URL}/api-token-auth/`
+const USER_INFO_URL = `${BASE_URL}/api/v1/me`;
 
 export default class UserKit {
     static login(formData) {
@@ -12,6 +13,12 @@ export default class UserKit {
                 password
             })
         })
+    }
+
+    static getMe() {
+        return fetch(USER_INFO_URL, {
+            headers: this.getPrivateHeaders()
+        });
     }
 
     static getPublicHeaders() {
