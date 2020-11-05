@@ -16,7 +16,6 @@ function ifProp(prop, css) {
 	}
 }
 
-
 const BackgroundColor = css`
 	${({ theme, background }) => {
 		return fromTheme(theme.colors, background, 'background: ');
