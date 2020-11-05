@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { CustomerContext } from "../contexts/CustomerContext";
 import { H3, P, Div } from "../components/partials/GeneralStyles";
 import Container from "../components/partials/Container";
@@ -7,16 +7,18 @@ import CustomerKit from "./../data/CustomerKit";
 
 export default function CustomerDetailPage() {
   const { id } = useParams();
+  const history = useHistory();
 
   const { customerDataList } = useContext(CustomerContext);
   const [customer, setCustomer] = useState(null);
 
   const handleDelete = () => {
-    // CustomerKit.deleteCustomer(id)
-    //   .then(() => {
-    //     // redirect
-    //   })
-    //   .catch((e) => console.error(e));
+    CustomerKit.deleteCustomer(id)
+      .then(() => {
+        // redirect
+        history.push("/home");
+      })
+      .catch((e) => console.error(e));
   };
 
   const handleEdit = () => {
