@@ -63,9 +63,7 @@ export default function CustomerDetailPage() {
 
   const renderEditModal = () => {
     return (
-      <Modal open={editModalOpen}>
-        <Div flex direction="column" width="100%" padding="m">
-          <H3 margin="0" padding="0 0 m 0">Edit Customer</H3>
+      <Modal open={editModalOpen} title="Edit customer" setOpen={setEditModalOpen}>
           <Div flex>
             <Button
               onClick={handleEditModalClose}
@@ -80,7 +78,6 @@ export default function CustomerDetailPage() {
               Save
             </Button>
           </Div>
-        </Div>
       </Modal>
     );
   };
