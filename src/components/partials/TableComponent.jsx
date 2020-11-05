@@ -10,7 +10,7 @@ export default function TableComponent(props) {
 					<Th>Corporate identity number</Th>
 					<Th>Phone</Th>
 					<Th>Email</Th>
-					<Th>Visit</Th>
+					<Th>Reference</Th>
 				</Tr>
 			</thead>
 			<tbody>{props.children}</tbody>
