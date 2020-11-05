@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as Styled from './GeneralStyles';
 
 export default function FormComponent(props) {
 	const { handleOnSubmit, children } = props;
@@ -10,7 +11,7 @@ export default function FormComponent(props) {
 			}}
 		>
 			{children}
-			<button type='submit'>Submit</button>
+			<Styled.Button margin="m 0 0 0" type='submit'>Submit</Styled.Button>
 		</form>
 	);
 }
