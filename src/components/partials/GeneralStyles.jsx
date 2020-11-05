@@ -59,7 +59,7 @@ export const Sizing = css`
 		return fromTheme(theme, borderRadius, 'border-radius: ');
 	}};
 
-    ${({ width, minWidth, maxWidth, height, minHeight, maxHeight, position, fullscreen }) => {
+    ${({ width, minWidth, maxWidth, height, minHeight, maxHeight, position, fullscreen, fontSize, fontWeight }) => {
 		return [
 			ifProp(width, `width: ${width};`),
 		
@@ -81,6 +81,10 @@ export const Sizing = css`
 					right: 0;
 					bottom: 0;
 				`),
+
+			ifProp(fontSize, `font-size: ${fontSize};`),
+			
+			ifProp(fontWeight, `font-weight: ${fontWeight};`),
 		].join('\n')
     }}
 `;
@@ -133,7 +137,28 @@ export const Span = styled.span`
 	${TextStyle};
 `;
 
+export const Cross = styled.span`
+	${TextStyle};
+	font-weight: 500;
+	cursor: pointer;
+	transition: .2s transform;
+	transform: rotate(45deg) scale(1);
+	font-size: 1.5em;
+	user-select: none;
+	
+	&:hover {
+		transform: rotate(45deg) scale(1.1);
+	}
+`;
+
 export const Div = styled.div`
+	${TextStyle};
+	${BackgroundColor};
+	${Sizing};
+	${Flex};
+`;
+
+export const Form = styled.form`
 	${TextStyle};
 	${BackgroundColor};
 	${Sizing};

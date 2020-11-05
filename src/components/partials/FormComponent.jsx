@@ -4,14 +4,15 @@ import * as Styled from './GeneralStyles';
 export default function FormComponent(props) {
 	const { handleOnSubmit, children } = props;
 	return (
-		<form
+		<Styled.Form
 			onSubmit={(e) => {
 				e.preventDefault();
 				handleOnSubmit(e);
 			}}
+			width="100%"
 		>
 			{children}
-			<Styled.Button margin="m 0 0 0" type='submit'>Submit</Styled.Button>
-		</form>
+			<Styled.Button type='submit'>Submit</Styled.Button>
+		</Styled.Form>
 	);
 }
