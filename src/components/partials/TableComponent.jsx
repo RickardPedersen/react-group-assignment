@@ -1,18 +1,19 @@
 import React from 'react';
-import { Th } from '../partials/GeneralStyles';
+import { Table, Tr, Th } from '../partials/TableStyles';
 export default function TableComponent(props) {
 	return (
-		<table>
+		<Table>
 			<thead>
-				<tr>
-					<Th scope='col'>#</Th>
-					<Th scope='col'>Company</Th>
-					<Th scope='col'>Corporate identity number</Th>
-					<Th scope='col'>Phone</Th>
-					<Th scope='col'>Email</Th>
-				</tr>
+				<Tr>
+					<Th>#</Th>
+					<Th>Company</Th>
+					<Th>Corporate identity number</Th>
+					<Th>Phone</Th>
+					<Th>Email</Th>
+					<Th>Visit</Th>
+				</Tr>
 			</thead>
 			<tbody>{props.children}</tbody>
-		</table>
+		</Table>
 	);
 }
