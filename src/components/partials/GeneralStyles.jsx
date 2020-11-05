@@ -107,6 +107,16 @@ export const Span = styled.span`
 	${Sizing};
 `;
 
+export const Th = styled.th`
+	${HeadingStyle};
+	${TextColor};
+`;
+
+export const Td = styled.td`
+	${TextStyle};
+	${TextColor};
+`;
+
 export const Button = styled.button`
 	padding: ${({ theme }) => theme.padding.s};
 	border: none;

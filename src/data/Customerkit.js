@@ -16,9 +16,7 @@ export default class CustomerKit {
             headers: this.getPrivateHeaders(),
             method: 'POST',
             body: JSON.stringify(formData)
-
         })
-
     }
 
     static getPublicHeaders() {
