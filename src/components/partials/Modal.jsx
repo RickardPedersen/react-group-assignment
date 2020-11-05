@@ -11,8 +11,9 @@ export default function Modal(props) {
                 flex
                 flex-direciton="column"
                 justify="center"
+                align="center"
                 padding="xxl"
-                background="rgba(0, 0, 0, 0.2)" 
+                background="rgba(0, 0, 0, 0.5)" 
                 fullscreen
             >
                 <Styled.Div 
@@ -20,7 +21,8 @@ export default function Modal(props) {
                     flex 
                     flex-direction="column" 
                     justify="space-between"
-                    max-height="100%"
+                    maxHeight="100%"
+                    height="auto"
                     width={width || '800px'}
                     borderRadius="borderRadius"
                 >

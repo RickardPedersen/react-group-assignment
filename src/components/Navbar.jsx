@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
+import { TextStyle, HeadingStyle } from './partials/GeneralStyles';
 
 const StyledNav = styled.nav`
   position: fixed;
@@ -9,8 +10,7 @@ const StyledNav = styled.nav`
   display: grid;
   padding: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  background: ${(props) => props.background};
-  color: ${(props) => props.text};
+  background: ${({theme}) => theme.colors.gray1};
   grid-template-columns: 1fr auto;
   z-index: 1000;
   box-sizing: border-box;
@@ -19,7 +19,7 @@ const StyledNav = styled.nav`
     font-weight: 500;
     grid-row: 1;
     grid-column: 1;
-    color: #fc0054;
+    ${HeadingStyle}
   }
 
   .links {
@@ -28,11 +28,11 @@ const StyledNav = styled.nav`
 
     a {
       text-decoration: none;
-      color: black;
+      ${TextStyle};
       margin-left: 10px;
 
       &::visited {
-        color: black;
+        ${TextStyle};
       }
     }
   }

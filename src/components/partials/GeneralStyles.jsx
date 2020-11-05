@@ -11,25 +11,23 @@ function fromTheme(themeProp, args, prefix) {
 
 function ifProp(prop, css) {
 	if(typeof prop !== 'undefined') {
-		//console.log(css)
 		return css
 	}
 }
 
-
-const BackgroundColor = css`
+export const BackgroundColor = css`
 	${({ theme, background }) => {
 		return fromTheme(theme.colors, background, 'background: ');
 	}};
 `;
 
-const TextColor = css`
+export const TextColor = css`
 	${({ theme, color }) => {
 		return fromTheme(theme.colors, color, 'color: ');
 	}};
 `;
 
-const Flex = css`
+export const Flex = css`
 	${({ flex, direction, justify, align }) => {
 		const entries = [];
 		if (typeof flex !== 'undefined') {
@@ -48,7 +46,7 @@ const Flex = css`
 	}};
 `;
 
-const Sizing = css`
+export const Sizing = css`
 	${({ theme, padding }) => {
 		return fromTheme(theme.padding, padding, 'padding: ');
 	}};
@@ -88,14 +86,15 @@ const Sizing = css`
     }}
 `;
 
-const HeadingStyle = css`
+export const HeadingStyle = css`
 	font-family: ${({ theme }) => theme.fonts.heading};
+	font-weight: 800;
 	color: ${({ theme }) => theme.colors.white};
 	${TextColor};
 	${Sizing};
 `;
 
-const TextStyle = css`
+export const TextStyle = css`
 	font-family: ${({ theme }) => theme.fonts.text};
 	color: ${({ theme }) => theme.colors.white};
 	${TextColor};
@@ -188,3 +187,16 @@ export const Button = styled.button`
 		box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 	}
 `;
+
+export const Input = styled.input`
+	width: 100%;
+	padding: ${({ theme }) => theme.padding.s};
+	background: ${({ theme }) => theme.colors.gray1};
+	border: none;
+	border-radius: ${({ theme }) => theme.borderRadius};
+
+	${TextStyle}
+	${BackgroundColor}
+	${TextColor}
+	${Sizing}
+`
