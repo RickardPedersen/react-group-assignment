@@ -6,7 +6,7 @@ import UserKit from '../data/UserKit'
 
 export default function LoginPage() {
     const history = useHistory()
-    const searchParams = new URLSearchParams(history.location.search);
+    const searchParams = new URLSearchParams(history.location.search)
 
     useEffect(() => {
         if (searchParams.has('uid') && searchParams.has('token')) {

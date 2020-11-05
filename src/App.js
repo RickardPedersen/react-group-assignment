@@ -12,6 +12,7 @@ function App() {
   const [tokenIsValid, setTokenIsValid] = useState(false)
   const [currentToken, setCurrentToken] = useState(UserKit.getToken())
   const history = useHistory()
+  const searchParams = new URLSearchParams(history.location.search)
 
   useEffect(() => {
     UserKit.verifyToken()
