@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Th, Td } from './partials/GeneralStyles';
+import { Th, Td, Tr } from './partials/TableStyles';
 
 export default function CustomerItem(props) {
 	const { id, email, name, organisationNr, phoneNumber } = props.data;
 	return (
-		<tr>
+		<Tr>
 			<Th scope='row'>{props.index + 1}</Th>
 			<Td>{name}</Td>
 			<Td>{organisationNr}</Td>
 			<Td>{phoneNumber}</Td>
 			<Td>{email}</Td>
 			<Td>
-				<Link to={`customer/${id}`}>Visit</Link>{' '}
+				<Link to={`customer/${id}`}>Link</Link>{' '}
 			</Td>
-		</tr>
+		</Tr>
 	);
 }

@@ -5,6 +5,7 @@ import UserInfo from './UserInfo';
 import CustomerKit from '../data/CustomerKit';
 import CustomerItem from './CustomerItem';
 import TableComponent from './partials/TableComponent';
+import { TableContainer } from './partials/TableStyles';
 
 export default function CustomerList() {
 	const { customerDataList, setCustomerDataList } = useContext(CustomerContext);
@@ -28,15 +29,17 @@ export default function CustomerList() {
 			});
 	}, []);
 	return (
-		<div>
+		<>
 			{currentUser && <UserInfo data={currentUser} />}
-			{dataLoaded && (
-				<TableComponent>
-					{customerDataList.map((customerItem, index) => {
-						return <CustomerItem key={customerItem.id} index={index} data={customerItem} />;
-					})}
-				</TableComponent>
-			)}
-		</div>
+			<TableContainer>
+				{dataLoaded && (
+					<TableComponent>
+						{customerDataList.map((customerItem, index) => {
+							return <CustomerItem key={customerItem.id} index={index} data={customerItem} />;
+						})}
+					</TableComponent>
+				)}
+			</TableContainer>
+		</>
 	);
 }
