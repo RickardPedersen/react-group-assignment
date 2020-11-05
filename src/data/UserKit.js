@@ -1,6 +1,7 @@
 const BASE_URL = 'https://frebi.willandskill.eu'
 const LOGIN_URL = `${BASE_URL}/api-token-auth/`
 const CREATE_ACCOUNT_URL = `${BASE_URL}/auth/users/create/`
+const ACTIVATE_ACCOUNT_URL = `${BASE_URL}/auth/users/activate/`
 const USER_INFO_URL = `${BASE_URL}/api/v1/me`
 const VERIFY_URL = `${BASE_URL}/api-token-verify/`
 
@@ -14,17 +15,7 @@ export default class UserKit {
 			organisationName,
 			organisationKind,
         } = formData
-        
-		const test = {
-			email,
-			password,
-			firstName,
-			lastName,
-			organisationName,
-			organisationKind,
-        }
-        
-		console.log(test)
+
 		return fetch(CREATE_ACCOUNT_URL, {
 		    headers: this.getPublicHeaders(),
 		    method: 'POST',
@@ -37,7 +28,20 @@ export default class UserKit {
                 organisationKind,
             })
 		})
-	}
+    }
+    
+    static activateAccount(activation) {
+        const {uid, token} = activation
+        return fetch(ACTIVATE_ACCOUNT_URL, {
+            headers: this.getPublicHeaders(),
+			method: 'POST',
+			body: JSON.stringify({
+				uid,
+				token,
+			}),
+        })
+
+    }
 
 	static login(formData) {
 		const { email, password } = formData

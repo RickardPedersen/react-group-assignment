@@ -29,19 +29,19 @@ function App() {
     <div>
       <Switch>
         <UserContext.Provider value={{currentToken, setCurrentToken}}>
-          <Route exact path="/">
+          <Route path="/login">
             <LoginPage/>
           </Route>
           {tokenIsValid ? 
             <CustomerContext.Provider value={{customerDataList, setCustomerDataList}}>
-              <Route exact path="/customer/:id" component={CustomerDetailPage}></Route>
-              <Route exact path="/home">
+              <Route path="/customer/:id" component={CustomerDetailPage}></Route>
+              <Route path="/home">
                 <HomePage/>
               </Route>
             </CustomerContext.Provider>
             : 
             <Route path="/*">
-              {history.push('/')}
+              {history.push('/login')}
             </Route>
           }          
         </UserContext.Provider>
@@ -51,3 +51,7 @@ function App() {
 }
 
 export default App;
+
+// <Route path="/*">
+//   {history.push('/login')}
+// </Route>
