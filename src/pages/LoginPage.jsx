@@ -14,9 +14,8 @@ export default function LoginPage() {
                 uid: searchParams.get('uid'),
                 token: searchParams.get('token')
             })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
+            .then(res => {
+                console.log(res)
                 history.push('/login')
             })
         }
