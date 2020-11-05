@@ -1,110 +1,135 @@
 import styled, { css } from 'styled-components';
 
-const HeadingStyle = css`
-	font-family: ${({ theme }) => theme.fonts.heading};
-	color: ${({ theme }) => theme.colors.white};
-`;
-
-const TextStyle = css`
-	font-family: ${({ theme }) => theme.fonts.text};
-	color: ${({ theme }) => theme.colors.white};
-`;
+function fromTheme(themeProp, args, prefix) {
+    if(args) {
+        args = args.split(' ')
+        if (prefix) {
+            return prefix + args.map(arg =>     
+                themeProp[arg] ?
+                themeProp[arg] : 
+                arg
+            ).join(' ');
+        } 
+    } 
+}
 
 const BackgroundColor = css`
 	${({ theme, background }) => {
-		const start = 'background: ';
-		if (background) {
-			if (theme.colors[background]) {
-				return start + theme.colors[background];
-			} else {
-				return start + background;
-			}
-		}
+		return fromTheme(theme.colors, background, 'background: ')
 	}};
 `;
 
 const TextColor = css`
 	${({ theme, color }) => {
-		const start = 'color: ';
-		if (color) {
-			if (theme.colors[color]) {
-				return start + theme.colors[color];
-			} else {
-				return start + color;
-			}
-		}
+		return fromTheme(theme.colors, color, 'color: ')
 	}};
 `;
 
+const Flex = css`
+    ${({ flex, direction, justify, align }) => {
+        const entries = [];
+        if(typeof flex !== 'undefined') {
+            entries.push('display: flex')
+        }
+        if(typeof direction !== 'undefined') {
+            entries.push(`flex-direction: ${direction}`)
+        }
+        if(typeof justify !== 'undefined') {
+            entries.push(`justify-content: ${justify}`)
+        }
+        if(typeof align !== 'undefined') {
+            entries.push(`align-items: ${align}`)
+        }
+        return entries.join(';\n')
+	}};
+`
+
 const Sizing = css`
 	${({ theme, padding }) => {
-		const start = 'padding: ';
-		if (padding) {
-			if (theme.padding[padding]) {
-				return start + theme.padding[padding];
-			} else {
-				return start + padding;
-			}
-		}
+		return fromTheme(theme.padding, padding, 'padding: ')
 	}};
 
 	${({ theme, margin }) => {
-		const start = 'margin: ';
-		if (margin) {
-			if (theme.padding[margin]) {
-				return start + theme.padding[margin];
-			} else {
-				return start + margin;
-			}
-		}
+		return fromTheme(theme.padding, margin, 'margin: ')
 	}};
+
+    ${({ width, minWidth, maxWidth, height, minHeight, maxHeight }) => {
+        if(typeof width !== 'undefined') {
+            return `width: ${width};`
+        }
+        if(typeof height !== 'undefined') {
+            return `height: ${height};`
+        }
+
+        if(typeof minWidth !== 'undefined') {
+            return `min-width: ${minWidth};`
+        }
+
+        if(typeof maxWidth !== 'undefined') {
+            return `max-width: ${maxWidth};`
+        }
+
+        if(typeof minHeight !== 'undefined') {
+            return `min-height: ${minHeight};`
+        }
+        
+        if(typeof maxHeight !== 'undefined') {
+            return `max-height: ${maxHeight};`
+        }
+    }}
+`;
+
+const HeadingStyle = css`
+	font-family: ${({ theme }) => theme.fonts.heading};
+	color: ${({ theme }) => theme.colors.white};
+    ${TextColor};
+	${Sizing};
+`;
+
+const TextStyle = css`
+	font-family: ${({ theme }) => theme.fonts.text};
+	color: ${({ theme }) => theme.colors.white};
+    ${TextColor};
+	${Sizing};
 `;
 
 export const H1 = styled.h1`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
 `;
 
 export const H2 = styled.h2`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
 `;
 
 export const H3 = styled.h3`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
+
 `;
 
 export const H4 = styled.h4`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
 `;
 
 export const H5 = styled.h5`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
 `;
 export const H6 = styled.h6`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
 `;
 
 export const P = styled.p`
 	${TextStyle};
-	${TextColor};
-	${Sizing};
 `;
 
 export const Span = styled.span`
 	${TextStyle};
-	${TextColor};
+`;
+
+export const Div = styled.div`
+	${TextStyle};
+	${BackgroundColor};
 	${Sizing};
+    ${Flex};
 `;
 
 export const Th = styled.th`
@@ -141,14 +166,16 @@ export const Button = styled.button`
 		border-radius: ${({ theme }) => theme.borderRadius};
 		background: ${({ theme }) => theme.colors.white};
 		opacity: 0;
-		transition: 0.2s opacity;
+		transition: 0.1s opacity;
 	}
 
 	&:hover:after {
 		opacity: 0.15;
 	}
 
-	&:active {
-		transform: scale(1.05);
+	&:active:after {
+        background: ${({ theme }) => theme.colors.bg};
+		opacity: 0.15;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5)
 	}
 `;
