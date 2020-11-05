@@ -55,7 +55,6 @@ export const Sizing = css`
 		return fromTheme(theme.padding, margin, 'margin: ');
 	}};
 
-
 	${({ theme, borderRadius }) => {
 		return fromTheme(theme, borderRadius, 'border-radius: ');
 	}};
@@ -97,6 +96,7 @@ export const HeadingStyle = css`
 export const TextStyle = css`
 	font-family: ${({ theme }) => theme.fonts.text};
 	color: ${({ theme }) => theme.colors.white};
+	${({bold}) => ifProp(bold, `font-weight: bold;`)}
 	${TextColor};
 	${Sizing};
 `;

@@ -66,6 +66,17 @@ export default function CreateCustomer(props) {
                                 handleOnChange={handleOnChange} />)
 
                     })}
+                    {Object.keys(formData).map((inputNameItem, index) => {
+                        return (
+                            <InputComponent
+                                key={index}
+                                type={'text'}
+                                name={inputNameItem}
+                                value={formData[inputNameItem]}
+                                placeholder={`enter ${inputNameItem}`}
+                                handleOnChange={handleOnChange} />)
+
+                    })}
 
                 </FormComponent>
             </Modal>}
