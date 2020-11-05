@@ -5,6 +5,11 @@ export default function InputWrapper(props) {
   function handleOnChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
+
+  function getFormattedLabel(label) {
+    const uppercaseLetters = label.match(/[A-Z]/g);
+    console.log(uppercaseLetters)
+  }
   return (
     <>
       {Object.keys(formData).map((inputNameItem, index) => {
