@@ -77,6 +77,10 @@ const Sizing = css`
             return `max-height: ${maxHeight};`
         }
     }}
+
+	${({ theme, borderRadius }) => {
+		return fromTheme(theme, borderRadius, 'border-radius: ')
+	}};
 `;
 
 const HeadingStyle = css`
