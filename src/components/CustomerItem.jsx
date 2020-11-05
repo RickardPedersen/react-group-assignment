@@ -6,7 +6,7 @@ export default function CustomerItem(props) {
 	const { id, email, name, organisationNr, phoneNumber } = props.data;
 	return (
 		<Tr>
-			<Th scope='row'>{props.index + 1}</Th>
+			<Th>{props.index + 1}</Th>
 			<Td>{name}</Td>
 			<Td>{organisationNr}</Td>
 			<Td>{phoneNumber}</Td>

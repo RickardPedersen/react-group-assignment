@@ -5,12 +5,12 @@ export default function TableComponent(props) {
 		<Table>
 			<thead>
 				<Tr>
-					<Th scope='col'>#</Th>
-					<Th scope='col'>Company</Th>
-					<Th scope='col'>Corporate identity number</Th>
-					<Th scope='col'>Phone</Th>
-					<Th scope='col'>Email</Th>
-					<Th scope='col'>Visit</Th>
+					<Th>#</Th>
+					<Th>Company</Th>
+					<Th>Corporate identity number</Th>
+					<Th>Phone</Th>
+					<Th>Email</Th>
+					<Th>Visit</Th>
 				</Tr>
 			</thead>
 			<tbody>{props.children}</tbody>
