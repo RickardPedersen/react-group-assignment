@@ -20,7 +20,7 @@ export default function Modal(props) {
                     flex 
                     flex-direction="column" 
                     justify="space-between"
-                    height="100%"
+                    max-height="100%"
                     width={width || '800px'}
                     borderRadius="borderRadius"
                 >
