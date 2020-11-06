@@ -71,7 +71,7 @@ export default function CustomerDetailPage() {
           <H3 margin="0 0 l 0">{customer.name}</H3>
 
           {Object.entries(customer).map((entry, index) => {
-            if (typeof entry[1] == "string") {
+            if (typeof entry[1] == "string" || typeof entry[1] == "number") {
               return (
                 <P key={index} >
                   <P margin="0 0 xs 0" fontSize="0.8em" bold>{`${getFormattedLabel(entry[0])}`}</P>

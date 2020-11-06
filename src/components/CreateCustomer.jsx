@@ -28,7 +28,7 @@ export default function CreateCustomer(props) {
 	}
 	return (
 		<div>
-			<Button onClick={handleOnClick}>Add Customer</Button>
+			<Button onClick={handleOnClick} width="100%" borderRadius="0 0 borderRadius borderRadius">Add Customer</Button>
 			{isOpen && (
 				<Modal open={isOpen} setOpen={setIsOpen} title='Add customer'>
 					<FormComponent handleOnSubmit={handleOnSubmit}>

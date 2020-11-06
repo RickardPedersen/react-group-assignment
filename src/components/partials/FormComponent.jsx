@@ -16,7 +16,7 @@ export default function FormComponent(props) {
 			>
 				{children}
 			</Styled.Div>
-			<Styled.Button type='submit'>Submit</Styled.Button>
+			<Styled.Button>Submit</Styled.Button>
 		</Styled.Form>
 	);
 }
