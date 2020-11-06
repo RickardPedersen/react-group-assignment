@@ -1,9 +1,24 @@
 // const BASE_HUE = 260;
 // const BASE_SAT = 18;
 // const HIGHLIGHT_SAT = 30;
+
 const BASE_HUE = 260;
 const BASE_SAT = 5;
 const HIGHLIGHT_SAT = 40;
+const WHITE_VAL = 95;
+const BASE_VAL = 10;
+const BASE_VAL_STEP = 5;
+
+// const BASE_HUE = 260;
+// const BASE_SAT = 5;
+// const HIGHLIGHT_SAT = 40;
+// const WHITE_VAL = 10;
+// const BASE_VAL = 100;
+// const BASE_VAL_STEP = -10;
+
+function calcVal(step) {
+    return BASE_VAL + (BASE_VAL_STEP * step)
+}
 
 function clampHue(hue, shift) {
     let computedHue = hue - shift;
@@ -22,12 +37,17 @@ export const Theme = {
     },
 
     colors: {
-        bg:      `hsl(${BASE_HUE}, ${BASE_SAT}%, 10%)`,
-        gray1:   `hsl(${BASE_HUE}, ${BASE_SAT}%, 15%)`,
-        gray2:   `hsl(${BASE_HUE}, ${BASE_SAT}%, 20%)`,
-        gray3:   `hsl(${BASE_HUE}, ${BASE_SAT}%, 25%)`,
-        gray4:   `hsl(${BASE_HUE}, ${BASE_SAT}%, 30%)`,
-        white:   `hsl(${BASE_HUE}, 20%, 95%)`,
+        bg:      `hsl(${BASE_HUE}, ${BASE_SAT}%, ${calcVal(0)}%)`,
+        gray1:   `hsl(${BASE_HUE}, ${BASE_SAT}%, ${calcVal(1)}%)`,
+        gray2:   `hsl(${BASE_HUE}, ${BASE_SAT}%, ${calcVal(2)}%)`,
+        gray3:   `hsl(${BASE_HUE}, ${BASE_SAT}%, ${calcVal(3)}%)`,
+        gray4:   `hsl(${BASE_HUE}, ${BASE_SAT}%, ${calcVal(4)}%)`,
+        gray5:   `hsl(${BASE_HUE}, ${BASE_SAT}%, ${calcVal(5)}%)`,
+        gray6:   `hsl(${BASE_HUE}, ${BASE_SAT}%, ${calcVal(6)}%)`,
+        gray7:   `hsl(${BASE_HUE}, ${BASE_SAT}%, ${calcVal(7)}%)`,
+        gray8:   `hsl(${BASE_HUE}, ${BASE_SAT}%, ${calcVal(8)}%)`,
+        gray9:   `hsl(${BASE_HUE}, ${BASE_SAT}%, ${calcVal(9)}%)`,
+        white:   `hsl(${BASE_HUE}, 20%, ${WHITE_VAL}%)`,
         primary: `hsl(${clampHue(BASE_HUE, 5)},   ${BASE_SAT + HIGHLIGHT_SAT}%, 50%)`,
         success: `hsl(${clampHue(BASE_HUE, 115)}, ${BASE_SAT + HIGHLIGHT_SAT}%, 50%)`,
         warning: `hsl(${clampHue(BASE_HUE, 210)}, ${BASE_SAT + HIGHLIGHT_SAT}%, 50%)`,

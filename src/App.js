@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div>
-      <Navbar brand="KEFRB">
+      <Navbar brand="KAFRB">
         <Link to="/home">Home</Link>
         <Link to="/login" onClick={() => UserKit.removeToken()}>Log out</Link>
       </Navbar>
