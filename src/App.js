@@ -5,6 +5,7 @@ import CustomerDetailPage from './pages/CustomerDetailPage'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import Navbar from './components/Navbar'
+import GuardedRoute from './components/GuardedRoute'
 
 import { CustomerContext } from './contexts/CustomerContext'
 import { UserContext } from './contexts/UserContext'
@@ -15,7 +16,7 @@ function App() {
   const [tokenIsValid, setTokenIsValid] = useState(false)
   const [currentToken, setCurrentToken] = useState(UserKit.getToken())
   const history = useHistory()
-  const searchParams = new URLSearchParams(history.location.search)
+  
 
   useEffect(() => {
     UserKit.verifyToken()
@@ -33,27 +34,25 @@ function App() {
     <div>
       <Navbar brand="KEFRB">
         <Link to="/home">Home</Link>
-        <Link to="/" onClick={() => UserKit.removeToken()}>Log out</Link>
+        <Link to="/login" onClick={() => UserKit.removeToken()}>Log out</Link>
       </Navbar>
       <Switch>
         <UserContext.Provider value={{currentToken, setCurrentToken}}>
           <Route path="/login">
             <LoginPage/>
           </Route>
-          {tokenIsValid ? 
-            <CustomerContext.Provider value={{customerDataList, setCustomerDataList}}>
-              <Route path="/customer/:id" component={CustomerDetailPage}></Route>
-              <Route path="/home">
-                <HomePage/>
-              </Route>
-            </CustomerContext.Provider>
-            : 
-            <Route path="/*">
-              {(searchParams.has('uid') && searchParams.has('token')) ?
-                history.push(`/login${history.location.search}`) :
-                history.push('/login')}
-            </Route>
-          }          
+          <CustomerContext.Provider value={{customerDataList, setCustomerDataList}}>
+            <GuardedRoute
+              path="/customer/:id"
+              component={CustomerDetailPage}
+              auth={tokenIsValid}
+            />
+            <GuardedRoute
+              path="/home"
+              auth={tokenIsValid}
+              component={HomePage}
+            />
+          </CustomerContext.Provider>       
         </UserContext.Provider>
       </Switch>
     </div>
@@ -64,4 +63,10 @@ export default App;
 
 // <Route path="/*">
 //   {history.push('/login')}
+// </Route>
+// const searchParams = new URLSearchParams(history.location.search)
+// <Route path="/*">
+//   {(searchParams.has('uid') && searchParams.has('token')) ?
+//     history.push(`/login${history.location.search}`) :
+//     history.push('/login')}
 // </Route>
