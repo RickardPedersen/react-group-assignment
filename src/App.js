@@ -32,7 +32,7 @@ function App() {
     <div>
       <Navbar brand="KEFRB">
         <Link to="/home">Home</Link>
-        <Link to="/">Log out</Link>
+        <Link to="/" onClick={() => UserKit.removeToken()}>Log out</Link>
       </Navbar>
       <Switch>
         <UserContext.Provider value={{currentToken, setCurrentToken}}>
