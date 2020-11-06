@@ -10,19 +10,32 @@ export default function InputWrapper(props) {
     
     function getFormattedLabel(label) {
         const uppercaseLetters = label.match(/[A-Z]/g);
-        console.log(uppercaseLetters)
+
+        if(uppercaseLetters) {
+            uppercaseLetters.forEach(letter => {
+                label = label.replace(letter, ` ${letter}`)
+            })
+        }
+
+        label = label.replace(/Nr/g, 'Number');
+
+        label = label.charAt(0).toUpperCase() + label.slice(1); 
+
+        return label;
     }
-    
+
 	return (
 		<>
 			{Object.keys(formData).map((inputNameItem, index) => {
+                const formattedLabel = getFormattedLabel(inputNameItem)
 				return (
 					<InputComponent
 						key={index}
 						type={'text'}
 						name={inputNameItem}
 						value={formData[inputNameItem]}
-						placeholder={`enter ${inputNameItem}`}
+                        placeholder={`Enter ${formattedLabel}`}
+                        label = {formattedLabel}
 						handleOnChange={handleOnChange}
 					/>
 				);
