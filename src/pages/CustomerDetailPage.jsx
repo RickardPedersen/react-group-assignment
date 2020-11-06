@@ -14,16 +14,20 @@ export default function CustomerDetailPage() {
   const [customer, setCustomer] = useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  useEffect(() => {
+  const fetchCurrentCustomer = (id) => {
     const index = customerDataList.findIndex((customer) => customer.id == id);
     setCustomer(customerDataList[index]);
-    console.log(index);
+  };
+
+  useEffect(() => {
+    fetchCurrentCustomer(id);
+    console.log(customerDataList);
+    // console.log(index);
   }, []);
 
   const handleDelete = () => {
     CustomerKit.deleteCustomer(id)
       .then(() => {
-        // redirect
         history.push("/home");
       })
       .catch((e) => console.error(e));
@@ -66,9 +70,10 @@ export default function CustomerDetailPage() {
           {renderDeleteEditButtons()}
         </Div>
       )}
-      <CustomerEditModal 
+      <CustomerEditModal
         open={editModalOpen}
         customer={customer}
+        setCustomer={setCustomer}
         setOpen={setEditModalOpen}
       />
     </Container>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+
 import { Div, Button } from "../components/partials/GeneralStyles";
 import Modal from "./partials/Modal";
 import InputWrapper from "./InputWrapper";
+import CustomerKit from "./../data/CustomerKit";
 import { getFormFields } from "../util";
 
 export default function CustomerEditModal(props) {
-  const { open, setOpen, customer } = props;
+  const { open, setOpen, customer, setCustomer } = props;
   const concatFormFields = () => {
     return {
       ...getFormFields().empty(),
@@ -17,12 +19,16 @@ export default function CustomerEditModal(props) {
   const [fieldTypes] = useState(getFormFields().fieldTypes());
 
   useEffect(() => {
-    setFormData(concatFormFields())
-  }, [customer])
+    setFormData(concatFormFields());
+  }, [customer]);
 
   const handleEdit = () => {
-    // CustomerKit.editCustomer(payload, id);
-    // render changes
+    CustomerKit.editCustomer(formData, formData.id)
+      .then((res) => res.json)
+      .then((data) => {
+        setCustomer(formData);
+      });
+    handleEditModalClose();
   };
 
   const handleEditModalClose = () => {
