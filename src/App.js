@@ -15,6 +15,7 @@ function App() {
   const [customerDataList, setCustomerDataList] = useState({})
   const [tokenIsValid, setTokenIsValid] = useState(false)
   const [currentToken, setCurrentToken] = useState(UserKit.getToken())
+  const history = useHistory()
 
   useEffect(() => {
     UserKit.verifyToken()
@@ -23,15 +24,25 @@ function App() {
       if(data.token === UserKit.getToken()) {
         setTokenIsValid(true)
         setCurrentToken(data.token)
+        history.push('/home')
       }
     })
   }, [currentToken])
 
+  function handleLogout() {
+    UserKit.removeToken()
+    setTokenIsValid(false)
+  }
+
   return (
     <div>
       <Navbar brand="KAFRB">
-        <Link to="/home">Home</Link>
-        <Link to="/login" onClick={() => UserKit.removeToken()}>Log out</Link>
+        {tokenIsValid && (
+          <>
+            <Link to="/home">Home</Link>
+            <Link to="/login" onClick={handleLogout}>Log out</Link>
+          </>
+        )}
       </Navbar>
       <Switch>
         <UserContext.Provider value={{currentToken, setCurrentToken}}>

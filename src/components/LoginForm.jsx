@@ -28,9 +28,10 @@ export default function LoginForm(props) {
 				if (data.token) {
 					UserKit.setToken(data.token);
 					setCurrentToken(data.token);
-					history.push('/home');
+					console.log('LOGGAR IN')
+					history.push('/home')
 				}
-			});
+			})
 	}
 
 	function handleToggle() {
