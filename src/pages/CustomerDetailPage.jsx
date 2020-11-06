@@ -1,10 +1,18 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { CustomerContext } from "../contexts/CustomerContext";
-import { H3, P, Div, Button, H1 } from "../components/partials/GeneralStyles";
+import {
+  H3,
+  P,
+  Div,
+  Button,
+  H1,
+  Span,
+} from "../components/partials/GeneralStyles";
 import Container from "../components/partials/Container";
 import CustomerKit from "./../data/CustomerKit";
 import CustomerEditModal from "../components/CustomerEditModal";
+import { getFormattedLabel } from "../util";
 
 export default function CustomerDetailPage() {
   const { id } = useParams();
@@ -31,12 +39,12 @@ export default function CustomerDetailPage() {
 
   const renderDeleteEditButtons = () => {
     return (
-      <Div flex>
+      <Div flex margin="l 0 0 0">
         <Button
           onClick={handleDelete}
           background="danger"
           width="50%"
-          margin="0 xl 0 0"
+          margin="0 m 0 0"
         >
           Delete
         </Button>
@@ -55,18 +63,23 @@ export default function CustomerDetailPage() {
   return (
     <Container>
       {customer && (
-        <Div background="gray1" padding="xl" borderRadius="borderRadius">
-          <H3 margin="0 0 m 0">{customer.name}</H3>
+        <Div background="gray1" padding="m" borderRadius="borderRadius">
+          <H3 margin="0 0 l 0">{customer.name}</H3>
 
           {Object.entries(customer).map((entry, index) => {
             if (typeof entry[1] == "string") {
-              return <P key={index}>{`${entry[0]}: ${entry[1]}`}</P>;
+              return (
+                <P key={index} >
+                  <P margin="0 0 xs 0" fontSize="0.8em" bold>{`${getFormattedLabel(entry[0])}`}</P>
+                  {entry[1]}
+                </P>
+              );
             }
           })}
           {renderDeleteEditButtons()}
         </Div>
       )}
-      <CustomerEditModal 
+      <CustomerEditModal
         open={editModalOpen}
         customer={customer}
         setOpen={setEditModalOpen}

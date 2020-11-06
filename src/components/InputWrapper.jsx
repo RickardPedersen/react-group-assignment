@@ -1,6 +1,6 @@
 import React from "react";
 import InputComponent from "../components/partials/InputComponent";
-import { getFormattedLabel } from "../util";
+import { getFormattedLabel, getFormFields } from "../util";
 
 export default function InputWrapper(props) {
   const { formData, setFormData, fieldTypes } = props;
@@ -10,7 +10,7 @@ export default function InputWrapper(props) {
   }
 
   function shouldRender(item) {
-	return typeof formData[item] !== "object" && item !== 'id'
+	return typeof getFormFields().empty()[item] == 'string'
   }
 
   return (
