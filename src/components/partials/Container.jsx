@@ -9,6 +9,7 @@ const StyledContainer = styled.div`
   @media (max-width: 980px) {
     padding-left: ${({ theme }) => theme.padding.m};
     padding-right: ${({ theme }) => theme.padding.m};
+    padding-bottom: ${({ theme }) => theme.padding.m};
   }
 `;
 
