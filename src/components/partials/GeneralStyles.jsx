@@ -224,6 +224,10 @@ export const Input = styled.input`
 	border: none;
 	border-radius: ${({ theme }) => theme.borderRadius};
 
+	&::placeholder {
+		color: ${({ theme }) => theme.colors.gray9};
+	}
+
 	${TextStyle}
 	${BackgroundColor}
 	${TextColor}

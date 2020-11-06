@@ -16,7 +16,9 @@ export default function FormComponent(props) {
 			>
 				{children}
 			</Styled.Div>
-			<Styled.Button>Submit</Styled.Button>
+			<Styled.Div flex justify="flex-end">
+				<Styled.Button padding="s xxl">Submit</Styled.Button>
+			</Styled.Div>
 		</Styled.Form>
 	);
 }

@@ -9,7 +9,7 @@ export const Table = styled.table`
 	font-size: 0.9em;
 	min-width: 400px;
 	width: 100%;
-	/*box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);*/
+	/* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
 `;
 
 export const Tr = styled.tr`
@@ -32,6 +32,7 @@ export const Tr = styled.tr`
 			background: ${({ theme }) => theme.colors.gray4};
 		}
 	}
+	
 	&:last-of-type {
 		border-bottom: 2px solid ${({ theme }) => theme.colors.gray3};
 	}

@@ -16,15 +16,19 @@ export default function UserInfo() {
     <>
       {currentUser && (
         <Div
-			borderRadius="borderRadius 0 borderRadius 0"
-			background="gray1"
-			flex
-			align="center"
-			margin="0 0 m 0"
-		>
+          borderRadius="borderRadius borderRadius 0 0"
+          background="gray2"
+          flex
+          align="center"
+          justify="center"
+          padding="xl m"
+          margin="0 0 0 0"
+        >
           <H3 margin="0">
             Welcome back {`${currentUser.firstName} ${currentUser.lastName}`}
-			<Span fontSize="0.8rem" fontWeight="400"  margin="0 0 0 s">{currentUser.email}</Span>
+            <Span fontSize="0.8rem" fontWeight="400" margin="0 0 0 s">
+              {currentUser.email}
+            </Span>
           </H3>
         </Div>
       )}

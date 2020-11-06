@@ -13,6 +13,7 @@ export default function HomePage() {
 					background="gray1"
 					borderRadius="borderRadius"
 					padding="m"
+					overflow="hidden"
 				>
 					<UserInfo/>
 					<CustomerList />
