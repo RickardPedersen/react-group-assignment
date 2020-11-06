@@ -43,6 +43,10 @@ export default class UserKit {
         return localStorage.setItem('token', token)
     }
 
+    static removeToken () {
+        return localStorage.removeItem('token');
+    }
+
     static verifyToken() {
         return fetch(VERIFY_URL, {
             headers: this.getPublicHeaders(),

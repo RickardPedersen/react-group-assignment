@@ -9,21 +9,17 @@ import CreateCustomer from './CreateCustomer';
 export default function CustomerList() {
 	const { customerDataList, setCustomerDataList } = useContext(CustomerContext);
 	const [dataLoaded, setDataLoaded] = useState(false);
-	
-	
-	function fetchCustomers(){
-		CustomerKit.getCustomerList()
-		.then((res) => res.json())
-		.then((data) => {
-			console.log(data.results);
-			console.log(typeof customerDataList);
-			setCustomerDataList(data.results);
-			setDataLoaded(true);
-		});
 
+	function fetchCustomers() {
+		CustomerKit.getCustomerList()
+			.then((res) => res.json())
+			.then((data) => {
+				setCustomerDataList(data.results);
+				setDataLoaded(true);
+			});
 	}
 	useEffect(() => {
-		fetchCustomers()
+		fetchCustomers();
 	}, []);
 
 	return (
