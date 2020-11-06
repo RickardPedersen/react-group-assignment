@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
+import * as Styled from './GeneralStyles';
 
 export default function FormComponent(props) {
 	const { handleOnSubmit, children } = props;
 	return (
-		<form
+		<Styled.Form
 			onSubmit={(e) => {
 				e.preventDefault();
 				handleOnSubmit(e);
 			}}
+			width="100%"
 		>
 			{children}
-			<button type='submit'>Submit</button>
-		</form>
+			<Styled.Button type='submit'>Submit</Styled.Button>
+		</Styled.Form>
 	);
 }

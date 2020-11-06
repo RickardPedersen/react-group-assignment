@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import CreateAccountForm from '../components/CreateAccountForm'
 import LoginForm from '../components/LoginForm'
+import Container from '../components/partials/Container'
 import UserKit from '../data/UserKit'
 
 export default function LoginPage() {
@@ -23,8 +24,10 @@ export default function LoginPage() {
 
 	return (
 		<>
-			<LoginForm />
-            <CreateAccountForm />
+            <Container width="600px">
+                <LoginForm />
+                <CreateAccountForm />
+            </Container>
 		</>
 	)
 }

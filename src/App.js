@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch, useHistory, Link } from 'react-router-dom'
+
 import CustomerDetailPage from './pages/CustomerDetailPage'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
+import Navbar from './components/Navbar'
+
 import { CustomerContext } from './contexts/CustomerContext'
 import { UserContext } from './contexts/UserContext'
 import UserKit from './data/UserKit'
@@ -28,6 +31,10 @@ function App() {
 
   return (
     <div>
+      <Navbar brand="KEFRB">
+        <Link to="/home">Home</Link>
+        <Link to="/" onClick={() => UserKit.removeToken()}>Log out</Link>
+      </Navbar>
       <Switch>
         <UserContext.Provider value={{currentToken, setCurrentToken}}>
           <Route path="/login">

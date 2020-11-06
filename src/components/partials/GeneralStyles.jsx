@@ -1,110 +1,178 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
-const HeadingStyle = css`
-	font-family: ${({ theme }) => theme.fonts.heading};
-	color: ${({ theme }) => theme.colors.white};
-`;
+function fromTheme(themeProp, args, prefix) {
+	if (args) {
+		args = args.split(' ');
+		if (prefix) {
+			return prefix + args.map((arg) => (themeProp[arg] ? themeProp[arg] : arg)).join(' ');
+		}
+	}
+}
 
-const TextStyle = css`
-	font-family: ${({ theme }) => theme.fonts.text};
-	color: ${({ theme }) => theme.colors.white};
-`;
+function ifProp(prop, css) {
+	if(typeof prop !== 'undefined') {
+		return css
+	}
+}
 
-const BackgroundColor = css`
+export const BackgroundColor = css`
 	${({ theme, background }) => {
-		const start = 'background: ';
-		if (background) {
-			if (theme.colors[background]) {
-				return start + theme.colors[background];
-			} else {
-				return start + background;
-			}
-		}
+		return fromTheme(theme.colors, background, 'background: ');
 	}};
 `;
 
-const TextColor = css`
+export const TextColor = css`
 	${({ theme, color }) => {
-		const start = 'color: ';
-		if (color) {
-			if (theme.colors[color]) {
-				return start + theme.colors[color];
-			} else {
-				return start + color;
-			}
-		}
+		return fromTheme(theme.colors, color, 'color: ');
 	}};
 `;
 
-const Sizing = css`
-	${({ theme, padding }) => {
-		const start = 'padding: ';
-		if (padding) {
-			if (theme.padding[padding]) {
-				return start + theme.padding[padding];
-			} else {
-				return start + padding;
-			}
+export const Flex = css`
+	${({ flex, direction, justify, align }) => {
+		const entries = [];
+		if (typeof flex !== 'undefined') {
+			entries.push('display: flex');
 		}
+		if (typeof direction !== 'undefined') {
+			entries.push(`flex-direction: ${direction}`);
+		}
+		if (typeof justify !== 'undefined') {
+			entries.push(`justify-content: ${justify}`);
+		}
+		if (typeof align !== 'undefined') {
+			entries.push(`align-items: ${align}`);
+		}
+		return entries.join(';\n');
+	}};
+`;
+
+export const Sizing = css`
+	${({ theme, padding }) => {
+		return fromTheme(theme.padding, padding, 'padding: ');
 	}};
 
 	${({ theme, margin }) => {
-		const start = 'margin: ';
-		if (margin) {
-			if (theme.padding[margin]) {
-				return start + theme.padding[margin];
-			} else {
-				return start + margin;
-			}
-		}
+		return fromTheme(theme.padding, margin, 'margin: ');
 	}};
+
+	${({ theme, borderRadius }) => {
+		return fromTheme(theme, borderRadius, 'border-radius: ');
+	}};
+
+    ${({ width, minWidth, maxWidth, height, minHeight, maxHeight, position, fullscreen, fontSize, fontWeight }) => {
+		return [
+			ifProp(width, `width: ${width};`),
+		
+			ifProp(height, `height: ${height};`),
+
+			ifProp(minWidth, `min-width: ${minWidth};`),
+
+			ifProp(maxWidth, `max-width: ${maxWidth};`),
+
+			ifProp(minHeight, `min-height: ${minHeight};`),
+			
+			ifProp(maxHeight, `max-height: ${maxHeight};`),
+			
+			ifProp(position, `position: ${position};`),
+
+			ifProp(fullscreen, `
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+				`),
+
+			ifProp(fontSize, `font-size: ${fontSize};`),
+			
+			ifProp(fontWeight, `font-weight: ${fontWeight};`),
+		].join('\n')
+    }}
+`;
+
+export const HeadingStyle = css`
+	font-family: ${({ theme }) => theme.fonts.heading};
+	font-weight: 800;
+	color: ${({ theme }) => theme.colors.white};
+	${TextColor};
+	${Sizing};
+`;
+
+export const TextStyle = css`
+	font-family: ${({ theme }) => theme.fonts.text};
+	color: ${({ theme }) => theme.colors.white};
+	${({bold}) => ifProp(bold, `font-weight: bold;`)}
+	${TextColor};
+	${Sizing};
 `;
 
 export const H1 = styled.h1`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
 `;
 
 export const H2 = styled.h2`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
 `;
 
 export const H3 = styled.h3`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
 `;
 
 export const H4 = styled.h4`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
 `;
 
 export const H5 = styled.h5`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
 `;
+
 export const H6 = styled.h6`
 	${HeadingStyle};
-	${TextColor};
-	${Sizing};
 `;
 
 export const P = styled.p`
 	${TextStyle};
-	${TextColor};
-	${Sizing};
 `;
 
 export const Span = styled.span`
 	${TextStyle};
-	${TextColor};
+`;
+
+export const Cross = styled.span`
+	${TextStyle};
+	font-weight: 500;
+	cursor: pointer;
+	transition: .2s transform;
+	transform: rotate(45deg) scale(1);
+	font-size: 1.5em;
+	user-select: none;
+	
+	&:hover {
+		transform: rotate(45deg) scale(1.1);
+	}
+`;
+
+export const Div = styled.div`
+	${TextStyle};
+	${BackgroundColor};
 	${Sizing};
+	${Flex};
+`;
+
+export const Form = styled.form`
+	${TextStyle};
+	${BackgroundColor};
+	${Sizing};
+	${Flex};
+`;
+
+export const Th = styled.th`
+	${HeadingStyle};
+	${TextColor};
+`;
+
+export const Td = styled.td`
+	${TextStyle};
+	${TextColor};
 `;
 
 export const Button = styled.button`
@@ -131,14 +199,29 @@ export const Button = styled.button`
 		border-radius: ${({ theme }) => theme.borderRadius};
 		background: ${({ theme }) => theme.colors.white};
 		opacity: 0;
-		transition: 0.2s opacity;
+		transition: 0.1s opacity;
 	}
 
 	&:hover:after {
 		opacity: 0.15;
 	}
 
-	&:active {
-		transform: scale(1.05);
+	&:active:after {
+		background: ${({ theme }) => theme.colors.bg};
+		opacity: 0.15;
+		box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 	}
 `;
+
+export const Input = styled.input`
+	width: 100%;
+	padding: ${({ theme }) => theme.padding.s};
+	background: ${({ theme }) => theme.colors.gray2};
+	border: none;
+	border-radius: ${({ theme }) => theme.borderRadius};
+
+	${TextStyle}
+	${BackgroundColor}
+	${TextColor}
+	${Sizing}
+`

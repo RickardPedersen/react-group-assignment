@@ -14,34 +14,33 @@ export default class UserKit {
 			lastName,
 			organisationName,
 			organisationKind,
-        } = formData
+		} = formData
 
 		return fetch(CREATE_ACCOUNT_URL, {
-		    headers: this.getPublicHeaders(),
-		    method: 'POST',
-		    body: JSON.stringify({
-                email,
-                password,
-                firstName,
-                lastName,
-                organisationName,
-                organisationKind,
-            })
+			headers: this.getPublicHeaders(),
+			method: 'POST',
+			body: JSON.stringify({
+				email,
+				password,
+				firstName,
+				lastName,
+				organisationName,
+				organisationKind,
+			}),
 		})
-    }
-    
-    static activateAccount(activation) {
-        const {uid, token} = activation
-        return fetch(ACTIVATE_ACCOUNT_URL, {
-            headers: this.getPublicHeaders(),
+	}
+
+	static activateAccount(activation) {
+		const { uid, token } = activation
+		return fetch(ACTIVATE_ACCOUNT_URL, {
+			headers: this.getPublicHeaders(),
 			method: 'POST',
 			body: JSON.stringify({
 				uid,
 				token,
 			}),
-        })
-
-    }
+		})
+	}
 
 	static login(formData) {
 		const { email, password } = formData
@@ -80,6 +79,10 @@ export default class UserKit {
 
 	static setToken(token) {
 		return localStorage.setItem('token', token)
+	}
+
+	static removeToken() {
+		return localStorage.removeItem('token')
 	}
 
 	static verifyToken() {
