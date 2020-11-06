@@ -40,3 +40,11 @@ export function getFormattedLabel(label) {
 
     return label;
 }
+
+export function validVatNumber(inputString) {
+    let validString = (inputString.match(/SE([0-9]){10}$/gi));
+    if(validString && validString.length >= 0) {
+        return true;
+    }
+    return false;
+}
