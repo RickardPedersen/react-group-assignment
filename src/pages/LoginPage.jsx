@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import CreateAccountForm from '../components/CreateAccountForm'
 import LoginForm from '../components/LoginForm'
 import Container from '../components/partials/Container'
@@ -7,7 +7,7 @@ import UserKit from '../data/UserKit'
 
 export default function LoginPage() {
     const history = useHistory()
-    const searchParams = new URLSearchParams(history.location.search)
+    const searchParams = new URLSearchParams(useLocation().search)
     const [showLogin, setShowLogin] = useState(true)
 
     useEffect(() => {
