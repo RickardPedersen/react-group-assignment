@@ -43,7 +43,7 @@ export function getFormattedLabel(label) {
 
 export function validVatNumber(inputString) {
     let validString = (inputString.match(/SE([0-9]){10}$/gi));
-    if(validString && validString.length >= 0) {
+    if(inputString.length === 0 || validString) {
         return true;
     }
     return false;
