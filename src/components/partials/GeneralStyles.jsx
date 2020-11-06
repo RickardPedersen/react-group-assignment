@@ -59,7 +59,7 @@ export const Sizing = css`
 		return fromTheme(theme, borderRadius, 'border-radius: ');
 	}};
 
-    ${({ width, minWidth, maxWidth, height, minHeight, maxHeight, position, fullscreen, fontSize, fontWeight }) => {
+    ${({ width, minWidth, maxWidth, height, minHeight, maxHeight, position, fullscreen, fontSize, fontWeight, overflow, zIndex }) => {
 		return [
 			ifProp(width, `width: ${width};`),
 		
@@ -85,6 +85,10 @@ export const Sizing = css`
 			ifProp(fontSize, `font-size: ${fontSize};`),
 			
 			ifProp(fontWeight, `font-weight: ${fontWeight};`),
+
+			ifProp(overflow, `overflow: ${overflow};`),
+
+			ifProp(zIndex, `z-index: ${zIndex};`),
 		].join('\n')
     }}
 `;

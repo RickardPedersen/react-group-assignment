@@ -12,9 +12,10 @@ export default function Modal(props) {
           direciton="column"
           justify="center"
           align="center"
-          padding="xxl"
+          padding="80px xl xl xl"
           background="rgba(0, 0, 0, 0.5)"
           fullscreen
+          z-index="10000"
         >
           <Styled.Div
             background="gray1"
@@ -26,6 +27,7 @@ export default function Modal(props) {
             width={width || "800px"}
             borderRadius="borderRadius"
             padding="m"
+            overflow="hidden auto"
           >
             <Styled.Div margin="0 0 m 0" flex justify="space-between" align="center">
               <Styled.H3 margin="0" >{title || 'title'}</Styled.H3>

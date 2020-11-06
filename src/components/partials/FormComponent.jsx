@@ -11,8 +11,12 @@ export default function FormComponent(props) {
 			}}
 			width="100%"
 		>
-			{children}
-			<Styled.Button type='submit'>Submit</Styled.Button>
+			<Styled.Div
+				overflow="hidden auto"
+			>
+				{children}
+			</Styled.Div>
+			<Styled.Button>Submit</Styled.Button>
 		</Styled.Form>
 	);
 }

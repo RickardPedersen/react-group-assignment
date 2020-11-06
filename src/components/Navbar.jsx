@@ -12,7 +12,7 @@ const StyledNav = styled.nav`
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   background: ${({theme}) => theme.colors.gray1};
   grid-template-columns: 1fr auto;
-  z-index: 1000;
+  z-index: 10;
   box-sizing: border-box;
 
   .logo {
