@@ -12,6 +12,13 @@ export function getFormFields() {
         vatNr: {
             type: "text",
             required: false,
+            validation:  {
+                callback: (value) => {
+                    console.log(value)
+                    return value.length == 0 || validVatNumber(value)
+                },
+                message: "Invalid format, must be SE followed by 10 digits"
+            }
         },
         paymentTerm: {
             type: "number",

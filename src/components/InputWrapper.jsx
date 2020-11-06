@@ -10,13 +10,12 @@ export default function InputWrapper(props) {
   }
 
   function shouldRender(item) {
-	return typeof getFormFields().empty()[item] == 'string'
+	  return typeof getFormFields().empty()[item] == 'string'
   }
 
   return (
     <>
-      {Object.keys(formData)
-        .filter(shouldRender)
+      {Object.keys(getFormFields().empty())
         .map((inputNameItem, index) => {
           const formattedLabel = getFormattedLabel(inputNameItem);
           return (
@@ -26,6 +25,7 @@ export default function InputWrapper(props) {
               required={formSettings[inputNameItem].required || false}
               name={inputNameItem}
               value={formData[inputNameItem] || ""}
+              validation = {formSettings[inputNameItem].validation}
               placeholder={`Enter ${formattedLabel}`}
               label={formattedLabel}
               handleOnChange={handleOnChange}
