@@ -14,38 +14,22 @@ export const Table = styled.table`
 
 export const Tr = styled.tr`
 	// #17141d
-	background-color: ${({ theme }) => theme.colors.gray1};
+	background: ${({ theme }) => theme.colors.gray1};
 	color: #ffffff;
 	text-align: left;
 	position: relative;
-	/*border-bottom: 1px solid ${({ theme }) => theme.colors.bg};*/
+	transition: .2s background;
 	
 	&:hover {
 		cursor: pointer;
-		/*color: ${({ theme }) => theme.colors.primary};*/
-	}
-
-	&:after {
-		position: absolute;
-		content: "";
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		background: ${({ theme }) => theme.colors.white};
-		opacity: 0;
-		transition: .2s opacity;
-	}
-
-	&:hover:after {
-		opacity: 0.05;
+		background: ${({ theme }) => theme.colors.gray2};
 	}
 
 	&:nth-of-type(even) {
-		background-color: ${({ theme }) => theme.colors.gray3};
+		background: ${({ theme }) => theme.colors.gray3};
 
-		&:hover:after {
-			opacity: 0.1;
+		&:hover {
+			background: ${({ theme }) => theme.colors.gray4};
 		}
 	}
 	&:last-of-type {
