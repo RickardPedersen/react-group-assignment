@@ -3,7 +3,7 @@ import InputComponent from "../components/partials/InputComponent";
 import { getFormattedLabel, getFormFields } from "../util";
 
 export default function InputWrapper(props) {
-  const { formData, setFormData, fieldTypes } = props;
+  const { formData, setFormData, formSettings } = props;
 
   function handleOnChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,9 +22,10 @@ export default function InputWrapper(props) {
           return (
             <InputComponent
               key={index}
-              type={fieldTypes[inputNameItem] || "text"}
+              type={formSettings[inputNameItem].type || "text"}
+              required={formSettings[inputNameItem].required || false}
               name={inputNameItem}
-              value={formData[inputNameItem]}
+              value={formData[inputNameItem] || ""}
               placeholder={`Enter ${formattedLabel}`}
               label={formattedLabel}
               handleOnChange={handleOnChange}

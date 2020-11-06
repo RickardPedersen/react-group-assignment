@@ -16,7 +16,7 @@ export default function CustomerEditModal(props) {
   };
 
   const [formData, setFormData] = useState(concatFormFields());
-  const [fieldTypes] = useState(getFormFields().fieldTypes());
+  const [formSettings] = useState(getFormFields().settings());
 
   useEffect(() => {
     setFormData(concatFormFields());
@@ -40,7 +40,7 @@ export default function CustomerEditModal(props) {
       <InputWrapper
         setFormData={setFormData}
         formData={formData}
-        fieldTypes={fieldTypes}
+        formSettings={formSettings}
       />
       <Div flex>
         <Button

@@ -1,8 +1,16 @@
+import React, { useEffect } from "react";
 import * as Styled from "./GeneralStyles";
-import React from "react";
 
 export default function Modal(props) {
   const { open, children, width, setOpen, title } = props;
+
+  useEffect(() => {
+    if(open) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+  }, [open])
   return (
     <>
       {open && (

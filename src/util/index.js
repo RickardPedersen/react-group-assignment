@@ -1,13 +1,38 @@
 export function getFormFields() {
+
     const fields = {
-        name: "text",
-        organisationNr: "number",
-        vatNr: "text",
-        paymentTerm: "number",
-        reference: "text",
-        website: "text",
-        email: "text",
-        phoneNumber: "text",
+        name: {
+            type: "text",
+            required: true,
+        },
+        organisationNr: {
+            type: "number",
+            required: false,
+        },
+        vatNr: {
+            type: "text",
+            required: false,
+        },
+        paymentTerm: {
+            type: "number",
+            required: false,
+        },
+        reference: {
+            type: "text",
+            required: false,
+        },
+        website: {
+            type: "text",
+            required: false,
+        },
+        email: {
+            type: "text",
+            required: false,
+        },
+        phoneNumber: {
+            type: "text",
+            required: false,
+        },
     }
 
     return {
@@ -19,7 +44,7 @@ export function getFormFields() {
 
             return emptyFields;
         },
-        fieldTypes() {
+        settings() {
             return fields;
         }
     }

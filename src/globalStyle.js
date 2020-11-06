@@ -10,6 +10,11 @@ export const GlobalStyle = createGlobalStyle`
         background: ${Theme.colors.bg}
     }
 
+    body.modal-open {
+        max-height: 100vh;
+        overflow: hidden;
+    }
+
     * {
         box-sizing: border-box;
     }

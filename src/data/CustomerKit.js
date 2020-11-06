@@ -10,10 +10,32 @@ export default class CustomerKit {
   }
 
   static postNewCustomer(formData) {
+    const {
+      name,
+      organisationNr,
+      vatNr,
+      paymentTerm,
+      reference,
+      website,
+      email,
+      phoneNumber,
+		} = formData
+
+		const payload = {
+      name,
+			...organisationNr && {organisationNr},
+			...vatNr && {vatNr},
+			...paymentTerm && {paymentTerm},
+			...reference && {reference},
+			...website && {website},
+			...email && {email},
+			...phoneNumber && {phoneNumber},
+		}
+
     return fetch(CUSTOMER_URL, {
       headers: this.getPrivateHeaders(),
       method: "POST",
-      body: JSON.stringify(formData),
+      body: JSON.stringify(payload),
     });
   }
 

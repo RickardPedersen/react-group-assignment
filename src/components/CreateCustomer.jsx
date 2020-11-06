@@ -8,7 +8,7 @@ import { getFormFields, validVatNumber } from "../util";
 
 export default function CreateCustomer(props) {
   const [formData, setFormData] = useState(getFormFields().empty());
-  const [fieldTypes] = useState(getFormFields().fieldTypes());
+  const [formSettings] = useState(getFormFields().settings());
   const [isOpen, setIsOpen] = useState(false);
 
   function handleOnSubmit() {
@@ -46,7 +46,7 @@ export default function CreateCustomer(props) {
             <InputWrapper
               setFormData={setFormData}
               formData={formData}
-              fieldTypes={fieldTypes}
+              formSettings={formSettings}
             />
           </FormComponent>
         </Modal>
