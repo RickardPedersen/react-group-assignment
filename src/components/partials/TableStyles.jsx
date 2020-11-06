@@ -2,14 +2,13 @@ import styled, { css } from 'styled-components/macro';
 
 export const TableContainer = styled.div`
 	width: 100%;
+	overflow: hidden;
 `;
 export const Table = styled.table`
 	border-collapse: collapse;
 	margin: auto;
 	font-size: 0.9em;
-	min-width: 400px;
 	width: 100%;
-	/*box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);*/
 `;
 
 export const Tr = styled.tr`
@@ -18,8 +17,8 @@ export const Tr = styled.tr`
 	color: #ffffff;
 	text-align: left;
 	position: relative;
-	transition: .2s background;
-	
+	transition: 0.2s background;
+
 	&:hover {
 		cursor: pointer;
 		background: ${({ theme }) => theme.colors.gray2};
@@ -40,6 +39,19 @@ export const Tr = styled.tr`
 export const Th = styled.th`
 	padding: 12px 15px;
 	font-family: ${({ theme }) => theme.fonts.heading};
+	@media (max-width: 760px) {
+		:nth-child(3),
+		:nth-child(6) {
+			display: none;
+		}
+	}
+	@media (max-width: 490px) {
+		:nth-child(3),
+		:nth-child(5),
+		:nth-child(6) {
+			display: none;
+		}
+	}
 `;
 
 export const Td = styled.td`
@@ -48,5 +60,19 @@ export const Td = styled.td`
 	a {
 		color: white;
 		text-decoration: none;
+	}
+
+	@media (max-width: 760px) {
+		:nth-child(3),
+		:nth-child(6) {
+			display: none;
+		}
+	}
+	@media (max-width: 490px) {
+		:nth-child(3),
+		:nth-child(5),
+		:nth-child(6) {
+			display: none;
+		}
 	}
 `;
