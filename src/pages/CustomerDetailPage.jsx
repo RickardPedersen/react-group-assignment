@@ -4,7 +4,7 @@ import { CustomerContext } from "../contexts/CustomerContext";
 import { H3, P, Div, Button, H1 } from "../components/partials/GeneralStyles";
 import Container from "../components/partials/Container";
 import CustomerKit from "./../data/CustomerKit";
-import Modal from "../components/partials/Modal";
+import CustomerEditModal from "../components/CustomerEditModal";
 
 export default function CustomerDetailPage() {
   const { id } = useParams();
@@ -29,19 +29,6 @@ export default function CustomerDetailPage() {
       .catch((e) => console.error(e));
   };
 
-  const handleEdit = () => {
-    // CustomerKit.editCustomer(payload, id);
-    // render changes
-  };
-
-  const handleEditModalClose = () => {
-    setEditModalOpen(false);
-  };
-
-  const handleEditModalOpen = () => {
-    setEditModalOpen(true);
-  };
-
   const renderDeleteEditButtons = () => {
     return (
       <Div flex>
@@ -61,25 +48,8 @@ export default function CustomerDetailPage() {
     );
   };
 
-  const renderEditModal = () => {
-    return (
-      <Modal open={editModalOpen} title="Edit customer" setOpen={setEditModalOpen}>
-          <Div flex>
-            <Button
-              onClick={handleEditModalClose}
-              background="danger"
-              width="50%"
-              margin="0 m 0 0"
-            >
-              Cancel
-            </Button>
-
-            <Button onClick={handleEdit} background="success" width="50%">
-              Save
-            </Button>
-          </Div>
-      </Modal>
-    );
+  const handleEditModalOpen = () => {
+    setEditModalOpen(true);
   };
 
   return (
@@ -96,7 +66,11 @@ export default function CustomerDetailPage() {
           {renderDeleteEditButtons()}
         </Div>
       )}
-      {renderEditModal()}
+      <CustomerEditModal 
+        open={editModalOpen}
+
+        setOpen={setEditModalOpen}
+      />
     </Container>
   );
 }
