@@ -63,7 +63,7 @@ export default function CreateAccountForm(props) {
 			/>
       <InputComponent
 				name='organisationName'
-				label='Organisation Name'
+				label='Organisation Name *'
 				placeholder='Enter Organisation Name...'
 				value={formData.organisationName}
 				handleOnChange={handleOnChange}

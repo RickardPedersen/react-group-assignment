@@ -16,17 +16,19 @@ export default class UserKit {
 			organisationKind,
 		} = formData
 
+		const payload = {
+			email,
+			password,
+			organisationName,
+			organisationKind,
+			...firstName && {firstName},
+			...lastName && {lastName},
+		}
+
 		return fetch(CREATE_ACCOUNT_URL, {
 			headers: this.getPublicHeaders(),
 			method: 'POST',
-			body: JSON.stringify({
-				email,
-				password,
-				firstName,
-				lastName,
-				organisationName,
-				organisationKind,
-			}),
+			body: JSON.stringify(payload),
 		})
 	}
 

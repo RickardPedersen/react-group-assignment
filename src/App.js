@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Switch, useHistory, Link } from 'react-router-dom'
+import { Route, Switch, useHistory, Link, Redirect } from 'react-router-dom'
 
 import CustomerDetailPage from './pages/CustomerDetailPage'
 import HomePage from './pages/HomePage'
@@ -15,8 +15,6 @@ function App() {
   const [customerDataList, setCustomerDataList] = useState({})
   const [tokenIsValid, setTokenIsValid] = useState(false)
   const [currentToken, setCurrentToken] = useState(UserKit.getToken())
-  const history = useHistory()
-  
 
   useEffect(() => {
     UserKit.verifyToken()
@@ -37,6 +35,12 @@ function App() {
       </Navbar>
       <Switch>
         <UserContext.Provider value={{currentToken, setCurrentToken}}>
+          <Route exact path="/">
+            {tokenIsValid ?
+              <Redirect to='/home' /> :
+              <Redirect to='/login' />
+            }
+          </Route> 
           <Route path="/login">
             <LoginPage/>
           </Route>
@@ -52,12 +56,7 @@ function App() {
               component={HomePage}
             />
           </CustomerContext.Provider>    
-          <Route path="/">
-            {tokenIsValid ?
-              history.push('/home') :
-              history.push('login')
-            }
-          </Route> 
+          
         </UserContext.Provider>
       </Switch>
     </div>
