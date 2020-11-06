@@ -4,17 +4,11 @@ import Modal from "./partials/Modal";
 import FormComponent from "../components/partials/FormComponent";
 import InputWrapper from "./InputWrapper";
 import CustomerKit from "../data/CustomerKit";
+import { getFormFields } from "../util";
 
 export default function CreateCustomer(props) {
-  const [formData, setFormData] = useState({
-    name: "",
-    organisationNr: "",
-    vatNr: "",
-    reference: "",
-    website: "",
-    email: "",
-    phoneNumber: "",
-  });
+  const [formData, setFormData] = useState(getFormFields().empty());
+  const [fieldTypes] = useState(getFormFields().fieldTypes());
   const [isOpen, setIsOpen] = useState(false);
 
   function handleOnSubmit() {
@@ -22,15 +16,7 @@ export default function CreateCustomer(props) {
       CustomerKit.postNewCustomer(formData)
         .then((res) => res.json())
         .then((data) => {
-          setFormData({
-            name: "",
-            organisationNr: "",
-            vatNr: "",
-            reference: "",
-            website: "",
-            email: "",
-            phoneNumber: "",
-          });
+          setFormData(getFormFields().empty());
           props.fetchCustomers();
         });
     }
@@ -47,7 +33,7 @@ export default function CreateCustomer(props) {
       {isOpen && (
         <Modal open={isOpen} setOpen={setIsOpen} title="Add customer">
             <FormComponent handleOnSubmit={handleOnSubmit}>
-              <InputWrapper setFormData={setFormData} formData={formData} />
+              <InputWrapper setFormData={setFormData} formData={formData} fieldTypes={fieldTypes}/>
             </FormComponent>
         </Modal>
       )}
