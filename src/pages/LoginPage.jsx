@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import CreateAccountForm from '../components/CreateAccountForm'
 import LoginForm from '../components/LoginForm'
@@ -8,6 +8,7 @@ import UserKit from '../data/UserKit'
 export default function LoginPage() {
     const history = useHistory()
     const searchParams = new URLSearchParams(history.location.search)
+    const [showLogin, setShowLogin] = useState(true)
 
     useEffect(() => {
         if (searchParams.has('uid') && searchParams.has('token')) {
@@ -25,8 +26,11 @@ export default function LoginPage() {
 	return (
 		<>
             <Container width="600px">
-                <LoginForm />
-                <CreateAccountForm />
+                {showLogin ?
+                    <LoginForm show={showLogin} toggle={setShowLogin} />
+                    :
+                    <CreateAccountForm show={showLogin} toggle={setShowLogin} />
+                }
             </Container>
 		</>
 	)

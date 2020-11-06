@@ -2,9 +2,10 @@ import React, { useState, useContext } from 'react'
 import FormComponent from './partials/FormComponent'
 import InputComponent from './partials/InputComponent'
 import UserKit from '../data/UserKit'
-import { H1 } from './partials/GeneralStyles'
+import { H1, Button, P } from './partials/GeneralStyles'
 
-export default function CreateAccountForm() {
+export default function CreateAccountForm(props) {
+	const { toggle, show } = props
   const [formData, setFormData] = useState({
 		email: '',
     password: '',
@@ -22,11 +23,15 @@ export default function CreateAccountForm() {
     UserKit.createAccount(formData)
     .then(res => res.json())
     .then(data => console.log(data))
-  }
+	}
+	
+	function handleToggle() {
+		toggle(!show)
+	}
   
   return (
     <FormComponent handleOnSubmit={handleOnSubmit}>
-      <H1>Skapa konto</H1>
+      <H1>Create Account</H1>
       <InputComponent
 				name='email'
 				label='E-mail *'
@@ -66,10 +71,12 @@ export default function CreateAccountForm() {
       <InputComponent
 				name='organisationKind'
 				label='Organisation Kind *'
-				placeholder='Enter Organisation Kind...'
+				placeholder='Ex. 1, 2, 3'
 				value={formData.organisationKind}
 				handleOnChange={handleOnChange}
 			/>
+			<P>Already have an account?</P>
+			<Button margin="0 0 5px" type="button" onClick={handleToggle}>Log In</Button>
     </FormComponent>
   )
 }
