@@ -71,7 +71,7 @@ export default function CreateAccountForm(props) {
       <InputComponent
 				name='organisationKind'
 				label='Organisation Kind *'
-				placeholder='Ex. 1, 2, 3'
+				placeholder='Ex. 0, 1, 2'
 				value={formData.organisationKind}
 				handleOnChange={handleOnChange}
 			/>

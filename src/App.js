@@ -25,7 +25,6 @@ function App() {
       if(data.token === UserKit.getToken()) {
         setTokenIsValid(true)
         setCurrentToken(data.token)
-        history.push('/home')
       }
     })
   }, [currentToken])
@@ -52,7 +51,13 @@ function App() {
               auth={tokenIsValid}
               component={HomePage}
             />
-          </CustomerContext.Provider>       
+          </CustomerContext.Provider>    
+          <Route path="/">
+            {tokenIsValid ?
+              history.push('/home') :
+              history.push('login')
+            }
+          </Route> 
         </UserContext.Provider>
       </Switch>
     </div>
@@ -60,13 +65,3 @@ function App() {
 }
 
 export default App;
-
-// <Route path="/*">
-//   {history.push('/login')}
-// </Route>
-// const searchParams = new URLSearchParams(history.location.search)
-// <Route path="/*">
-//   {(searchParams.has('uid') && searchParams.has('token')) ?
-//     history.push(`/login${history.location.search}`) :
-//     history.push('/login')}
-// </Route>
