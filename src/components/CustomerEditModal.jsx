@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Div, Button } from "../components/partials/GeneralStyles";
 import Modal from "./partials/Modal";
 import InputWrapper from "./InputWrapper";
-import { getFormFields } from '../util';
+import { getFormFields } from "../util";
 
 export default function CustomerEditModal(props) {
-  const { open, setOpen } = props;
+  const { open, setOpen, customer } = props;
+  const concatFormFields = () => {
+    return {
+      ...getFormFields().empty(),
+      ...customer,
+    };
+  };
 
-  const [formData, setFormData] = useState(getFormFields());
+  const [formData, setFormData] = useState(concatFormFields());
+  const [fieldTypes] = useState(getFormFields().fieldTypes());
+
+  useEffect(() => {
+    setFormData(concatFormFields())
+  }, [customer])
 
   const handleEdit = () => {
     // CustomerKit.editCustomer(payload, id);
@@ -19,8 +30,12 @@ export default function CustomerEditModal(props) {
   };
 
   return (
-    <Modal open={open} title="Edit customer" setOpen={setOpen}>
-      <InputWrapper setFormData={setFormData} formData={formData} />    
+    <Modal open={open} title="Edit customer" setOpen={setOpen} width="600px">
+      <InputWrapper
+        setFormData={setFormData}
+        formData={formData}
+        fieldTypes={fieldTypes}
+      />
       <Div flex>
         <Button
           onClick={handleEditModalClose}

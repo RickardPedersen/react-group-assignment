@@ -68,7 +68,7 @@ export default function CustomerDetailPage() {
       )}
       <CustomerEditModal 
         open={editModalOpen}
-
+        customer={customer}
         setOpen={setEditModalOpen}
       />
     </Container>
