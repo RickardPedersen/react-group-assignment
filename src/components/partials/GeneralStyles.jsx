@@ -10,8 +10,8 @@ function fromTheme(themeProp, args, prefix) {
 }
 
 function ifProp(prop, css) {
-	if(typeof prop !== 'undefined') {
-		return css
+	if (typeof prop !== 'undefined') {
+		return css;
 	}
 }
 
@@ -59,10 +59,23 @@ export const Sizing = css`
 		return fromTheme(theme, borderRadius, 'border-radius: ');
 	}};
 
-    ${({ width, minWidth, maxWidth, height, minHeight, maxHeight, position, fullscreen, fontSize, fontWeight, overflow, zIndex }) => {
+	${({
+		width,
+		minWidth,
+		maxWidth,
+		height,
+		minHeight,
+		maxHeight,
+		position,
+		fullscreen,
+		fontSize,
+		fontWeight,
+		overflow,
+		zIndex,
+	}) => {
 		return [
 			ifProp(width, `width: ${width};`),
-		
+
 			ifProp(height, `height: ${height};`),
 
 			ifProp(minWidth, `min-width: ${minWidth};`),
@@ -70,27 +83,30 @@ export const Sizing = css`
 			ifProp(maxWidth, `max-width: ${maxWidth};`),
 
 			ifProp(minHeight, `min-height: ${minHeight};`),
-			
+
 			ifProp(maxHeight, `max-height: ${maxHeight};`),
-			
+
 			ifProp(position, `position: ${position};`),
 
-			ifProp(fullscreen, `
+			ifProp(
+				fullscreen,
+				`
 					top: 0;
 					left: 0;
 					right: 0;
 					bottom: 0;
-				`),
+				`
+			),
 
 			ifProp(fontSize, `font-size: ${fontSize};`),
-			
+
 			ifProp(fontWeight, `font-weight: ${fontWeight};`),
 
 			ifProp(overflow, `overflow: ${overflow};`),
 
 			ifProp(zIndex, `z-index: ${zIndex};`),
-		].join('\n')
-    }}
+		].join('\n');
+	}}
 `;
 
 export const HeadingStyle = css`
@@ -104,7 +120,7 @@ export const HeadingStyle = css`
 export const TextStyle = css`
 	font-family: ${({ theme }) => theme.fonts.text};
 	color: ${({ theme }) => theme.colors.white};
-	${({bold}) => ifProp(bold, `font-weight: bold;`)}
+	${({ bold }) => ifProp(bold, `font-weight: bold;`)}
 	${TextColor};
 	${Sizing};
 `;
@@ -137,6 +153,10 @@ export const P = styled.p`
 	${TextStyle};
 `;
 
+export const TextContainer = styled.div`
+	${TextStyle}
+`;
+
 export const Span = styled.span`
 	${TextStyle};
 `;
@@ -145,11 +165,11 @@ export const Cross = styled.span`
 	${TextStyle};
 	font-weight: 500;
 	cursor: pointer;
-	transition: .2s transform;
+	transition: 0.2s transform;
 	transform: rotate(45deg) scale(1);
 	font-size: 1.5em;
 	user-select: none;
-	
+
 	&:hover {
 		transform: rotate(45deg) scale(1.1);
 	}
@@ -232,4 +252,4 @@ export const Input = styled.input`
 	${BackgroundColor}
 	${TextColor}
 	${Sizing}
-`
+`;

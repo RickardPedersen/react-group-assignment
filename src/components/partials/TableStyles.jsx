@@ -31,7 +31,7 @@ export const Tr = styled.tr`
 			background: ${({ theme }) => theme.colors.gray4};
 		}
 	}
-	
+
 	&:last-of-type {
 		border-bottom: 2px solid ${({ theme }) => theme.colors.gray3};
 	}
