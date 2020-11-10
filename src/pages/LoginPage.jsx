@@ -17,7 +17,6 @@ export default function LoginPage() {
                 token: searchParams.get('token')
             })
             .then(res => {
-                console.log(res)
                 history.push('/login')
             })
         }

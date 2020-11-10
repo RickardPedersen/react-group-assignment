@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import FormComponent from './partials/FormComponent'
 import InputComponent from './partials/InputComponent'
 import UserKit from '../data/UserKit'
@@ -22,7 +22,6 @@ export default function CreateAccountForm(props) {
   function handleOnSubmit() {
     UserKit.createAccount(formData)
     .then(res => res.json())
-    .then(data => console.log(data))
 	}
 	
 	function handleToggle() {

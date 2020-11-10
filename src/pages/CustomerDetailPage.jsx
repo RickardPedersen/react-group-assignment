@@ -22,8 +22,6 @@ export default function CustomerDetailPage() {
 
 	useEffect(() => {
 		fetchCurrentCustomer(id);
-		console.log(customerDataList);
-		// console.log(index);
 	}, []);
 
 	const handleDelete = () => {

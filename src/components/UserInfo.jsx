@@ -8,7 +8,6 @@ export default function UserInfo() {
     UserKit.getMe()
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCurrentUser(data);
       });
   }, []);
