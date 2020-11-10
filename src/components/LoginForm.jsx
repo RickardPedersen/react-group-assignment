@@ -42,6 +42,7 @@ export default function LoginForm(props) {
 		<FormComponent handleOnSubmit={handleOnSubmit}>
 			<H1>Log In</H1>
 			<InputComponent
+				required={true}
 				name='email'
 				label='E-mail'
 				placeholder='killenmedallt@hotmail.com'
@@ -49,6 +50,7 @@ export default function LoginForm(props) {
 				handleOnChange={handleOnChange}
 			/>
 			<InputComponent
+				required={true}
 				name='password'
 				label='Password'
 				type='password'

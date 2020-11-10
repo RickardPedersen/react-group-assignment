@@ -33,15 +33,17 @@ export default function CreateAccountForm(props) {
     <FormComponent handleOnSubmit={handleOnSubmit}>
       <H1>Create Account</H1>
       <InputComponent
+				required={true}
 				name='email'
-				label='E-mail *'
+				label='E-mail'
 				placeholder='killenmedallt@hotmail.com'
 				value={formData.email}
 				handleOnChange={handleOnChange}
 			/>
 			<InputComponent
+				required={true}
 				name='password'
-				label='Password *'
+				label='Password'
 				type='password'
 				placeholder='Enter password...'
 				value={formData.password}
@@ -62,15 +64,17 @@ export default function CreateAccountForm(props) {
 				handleOnChange={handleOnChange}
 			/>
       <InputComponent
+				required={true}
 				name='organisationName'
-				label='Organisation Name *'
+				label='Organisation Name'
 				placeholder='Enter Organisation Name...'
 				value={formData.organisationName}
 				handleOnChange={handleOnChange}
 			/>
       <InputComponent
+				required={true}
 				name='organisationKind'
-				label='Organisation Kind *'
+				label='Organisation Kind'
 				placeholder='Ex. 0, 1, 2'
 				value={formData.organisationKind}
 				handleOnChange={handleOnChange}
