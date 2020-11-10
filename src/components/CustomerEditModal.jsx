@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { Div, Button } from "../components/partials/GeneralStyles";
 import Modal from "./partials/Modal";
 import InputWrapper from "./InputWrapper";
@@ -8,6 +7,7 @@ import { getFormFields } from "../util";
 
 export default function CustomerEditModal(props) {
   const { open, setOpen, customer, setCustomer } = props;
+
   const concatFormFields = () => {
     return {
       ...getFormFields().empty(),
@@ -41,6 +41,7 @@ export default function CustomerEditModal(props) {
         setFormData={setFormData}
         formData={formData}
         formSettings={formSettings}
+        formTemplate={getFormFields().empty()}
       />
       <Div flex>
         <Button

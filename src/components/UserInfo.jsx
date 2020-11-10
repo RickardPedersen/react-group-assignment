@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserKit from "../data/UserKit";
-import { H3, P, Span, Div } from "./partials/GeneralStyles";
+import { H3, Span, Div } from "./partials/GeneralStyles";
 
 export default function UserInfo() {
   const [currentUser, setCurrentUser] = useState(null);

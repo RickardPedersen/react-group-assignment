@@ -11,6 +11,7 @@ export default function Modal(props) {
       document.body.classList.remove('modal-open');
     }
   }, [open])
+  
   return (
     <>
       {open && (

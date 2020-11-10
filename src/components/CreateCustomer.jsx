@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Button, Div, H3 } from "./partials/GeneralStyles";
+import React, { useState } from "react";
+import { Button } from "./partials/GeneralStyles";
 import Modal from "./partials/Modal";
 import FormComponent from "../components/partials/FormComponent";
 import InputWrapper from "./InputWrapper";
@@ -47,6 +47,7 @@ export default function CreateCustomer(props) {
               setFormData={setFormData}
               formData={formData}
               formSettings={formSettings}
+              formTemplate={getFormFields().empty()}
             />
           </FormComponent>
         </Modal>

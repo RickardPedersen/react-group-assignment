@@ -18,9 +18,9 @@ export default function InputComponent(props) {
   function validate(e) {
     if (validation) {
         setValid(validation.callback(e.target.value));
-	}
-	
-	handleOnChange(e);
+    }
+    
+    handleOnChange(e);
   }
   return (
     <>

@@ -30,7 +30,7 @@ export default class CustomerKit {
 			...website && {website},
 			...email && {email},
 			...phoneNumber && {phoneNumber},
-		}
+    }
 
     return fetch(CUSTOMER_URL, {
       headers: this.getPrivateHeaders(),
