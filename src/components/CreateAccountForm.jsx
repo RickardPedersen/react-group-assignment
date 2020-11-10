@@ -13,7 +13,14 @@ export default function CreateAccountForm(props) {
     lastName: '',
     organisationName: '',
     organisationKind: '',
-  })
+	})
+	
+	const passwordValidation = {
+		callback: (value) => {
+			return value.length == 0 || value.match(/^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/)
+		},
+		message: 'Must be at least 8 characters with letters and numbers.'
+	}
   
   function handleOnChange(e) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,7 +28,11 @@ export default function CreateAccountForm(props) {
   
   function handleOnSubmit() {
     UserKit.createAccount(formData)
-    .then(res => res.json())
+		.then(res => {
+			if (res.status === 201) {
+				console.log('Account created! Please activate account.')
+			}
+		})
 	}
 	
 	function handleToggle() {
@@ -44,6 +55,7 @@ export default function CreateAccountForm(props) {
 				name='password'
 				label='Password'
 				type='password'
+				validation={passwordValidation}
 				placeholder='Enter password...'
 				value={formData.password}
 				handleOnChange={handleOnChange}
